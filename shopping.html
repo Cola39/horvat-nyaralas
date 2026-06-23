@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bevásárlólista</title>
   
-  <link rel="stylesheet" href="style.css">
-</head>
+  <link rel="stylesheet" href="style.css?v=6"> </head>
 <body>
 
   <div class="nav-menu">
@@ -16,28 +15,33 @@
 
   <div class="card">
     <h2>Bevásárlólista</h2>
-    <div id="loading">Betöltés... (Loading...)</div>
+    
+    <div id="loading" style="padding: 20px; text-align: center;">
+      <em>Betöltés... (Loading...)</em>
+    </div>
     
     <table id="shoppingTable" style="display:none;">
       <thead>
         <tr>
           <th>Táska</th>
-          <th style="width: 60px;">Kat</th>
+          <th>Kat</th>
           <th>Tárgy</th>
-          <th style="width: 60px;">Db</th>
+          <th>Db</th>
           <th>Kosárban?</th>
-          <th></th> </tr>
+          <th></th> 
+        </tr>
       </thead>
       <tbody id="tableBody">
         </tbody>
     </table>
 
-    <div style="display: flex; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; padding: 20px;">
       <button class="btn btn-secondary" onclick="addRow()">+ Új Tárgy (Add Item)</button>
       <button class="btn" onclick="saveShoppingList()">Mentés (Save List)</button>
     </div>
   </div>
 
   <script src="shopping.js"></script>
+
 </body>
 </html>
