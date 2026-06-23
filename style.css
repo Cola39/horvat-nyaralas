@@ -10,14 +10,11 @@
   --border-color: #ccc;
   --row-hover: #f0f5fa;
   --row-stripe: #f8fbff;
-  --text-main: #333;
   --delete-red: #d9534f;
   --font-base: 'Arial', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   font-family: var(--font-base);
@@ -37,10 +34,12 @@ body {
   padding: 20px;
 }
 
-.narrow-card {
-  max-width: 600px;
-  margin: 0 auto;
-}
+.narrow-card { max-width: 600px; margin: 0 auto; }
+
+/* Home Page Specifics */
+.home-card { text-align: center; padding: 40px 20px; }
+.home-card h2 { border-bottom: none; font-size: 28px; margin-bottom: 10px; }
+.subtitle { color: #555; font-size: 18px; margin-bottom: 30px; }
 
 h2 {
   color: var(--primary);
@@ -77,34 +76,15 @@ h2 {
   transition: all 0.2s ease;
 }
 
-.nav-menu a.active {
-  background-color: var(--primary);
-  color: var(--bg-white);
-}
-
-.nav-menu a:hover {
-  background-color: var(--bg-soft);
-}
+.nav-menu a.active { background-color: var(--primary); color: var(--bg-white); }
+.nav-menu a:hover { background-color: var(--bg-soft); }
 
 /* =========================================
    4. TABLES
    ========================================= */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-th {
-  background-color: var(--primary);
-  color: var(--bg-white);
-  padding: 15px;
-}
-
-td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
-}
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th { background-color: var(--primary); color: var(--bg-white); padding: 15px; }
+td { padding: 12px 15px; border-bottom: 1px solid #eee; }
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
@@ -119,6 +99,8 @@ tbody tr:hover { background-color: var(--row-hover); }
 /* Specific shopping table constraints */
 .shopping-table th, .shopping-table td { white-space: nowrap; }
 .shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 100%; }
+
+.table-responsive { width: 100%; overflow-x: auto; margin-bottom: 20px; }
 
 /* =========================================
    5. FORMS & INPUTS
@@ -148,7 +130,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   6. BUTTONS
+   6. BUTTONS & UTILITIES
    ========================================= */
 button, .btn {
   background-color: var(--primary);
@@ -162,16 +144,8 @@ button, .btn {
   transition: all 0.2s ease;
 }
 
-button:hover, .btn:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: var(--bg-white);
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
+button:hover, .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+.btn-secondary { background-color: var(--bg-white); color: var(--primary); border: 2px solid var(--primary); }
 
 .delete-btn {
   color: #777;
@@ -181,55 +155,17 @@ button:hover, .btn:hover {
   cursor: pointer;
   padding: 5px 10px;
 }
-
 .delete-btn:hover { color: var(--delete-red); }
+
+.action-buttons { display: flex; gap: 15px; }
+.home-buttons { justify-content: center; }
+.loading-state { padding: 20px; text-align: center; }
 
 /* =========================================
    7. RESPONSIVENESS
    ========================================= */
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
 @media (max-width: 600px) {
   .nav-menu { flex-direction: column; }
   .action-buttons { flex-direction: column; }
   .btn { width: 100%; }
-}
-
-
-
-/* Add these to your style.css */
-.home-card {
-  text-align: center; 
-  padding: 40px 20px;
-}
-
-.home-card h2 {
-  border-bottom: none; 
-  font-size: 28px; 
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  color: #555; 
-  font-size: 18px; 
-  margin-bottom: 30px;
-}
-
-.home-buttons {
-  justify-content: center; 
-  gap: 15px;
-}
-
-/* Styling for the loading state */
-.loading-state {
-  padding: 20px;
-  text-align: center;
-}
-
-/* Ensure the table responsive wrapper looks good */
-.table-responsive {
-  margin-bottom: 20px;
 }
