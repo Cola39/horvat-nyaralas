@@ -1,7 +1,9 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxNCN0v54YmAPkFwv_Ie892IsvF80uAHt25lV56SYq4nvfEgvJLRnTANShnuIqYvgqvog/exec'; 
+const fetchURL = scriptURL + "?type=budget";
 
 window.onload = function() {
-  fetch(scriptURL)
+  // 🚨 Use fetchURL here instead of scriptURL
+  fetch(fetchURL)
     .then(response => response.json())
     .then(data => renderTable(data))
     .catch(error => {
@@ -87,6 +89,8 @@ function autoCurrency(inputElement) {
 function saveData() {
   const inputs = document.querySelectorAll('input[type="text"]');
   const formData = new URLSearchParams();
+
+  formData.append("type", "budget");
 
   inputs.forEach(input => {
     const label = input.getAttribute('data-label');
