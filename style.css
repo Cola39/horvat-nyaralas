@@ -215,3 +215,48 @@ button:hover, .btn:hover {
 #shoppingTable td:nth-child(3) {
   width: 100%;
 }
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS & SCROLLING
+   ========================================= */
+
+/* Creates a swipeable window just for the table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Makes scrolling buttery smooth on iPhones */
+}
+
+/* Default layout for the bottom buttons (Desktop) */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* 📱 MOBILE OVERRIDES (Only applies to screens smaller than 600px) */
+@media (max-width: 600px) {
+  
+  /* Stack the bottom buttons vertically */
+  .action-buttons {
+    flex-direction: column; 
+  }
+
+  /* Make sure stacked buttons take up the full width */
+  .action-buttons .btn, .action-buttons .btn-secondary {
+    width: 100%;
+  }
+
+  /* Make table text and padding slightly smaller to fit more on screen */
+  th, td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  input[type="text"], input[type="number"], select {
+    font-size: 14px;
+    padding: 6px;
+  }
+}
