@@ -1,36 +1,54 @@
 /* =========================================
-   1. GENERAL LAYOUT
+   1. VARIABLES & RESET
    ========================================= */
+:root {
+  --primary: #126e82;
+  --primary-hover: #0d5363;
+  --bg-body: #f9f9f9;
+  --bg-white: #ffffff;
+  --bg-soft: #e8f0fe;
+  --border-color: #ccc;
+  --row-hover: #f0f5fa;
+  --row-stripe: #f8fbff;
+  --text-main: #333;
+  --delete-red: #d9534f;
+  --font-base: 'Arial', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-base);
   padding: 20px;
   max-width: 850px;
   margin: auto;
-  background-color: #f9f9f9;
+  background-color: var(--bg-body);
 }
 
+/* =========================================
+   2. LAYOUT & CARDS
+   ========================================= */
 .card {
-  background: white;
+  background: var(--bg-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  padding: 20px;
 }
 
-/* Creates a narrower card perfectly sized for 2 columns (Costs page) */
 .narrow-card {
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* =========================================
-   2. TYPOGRAPHY & HEADERS
-   ========================================= */
 h2 {
-  color: #126e82;
+  color: var(--primary);
   text-align: center;
   margin-top: 20px;
   padding: 15px 0;
-  border-bottom: 2px solid #e8f0fe;
-  font-size: 24px;
+  border-bottom: 2px solid var(--bg-soft);
+  font-size: 1.5rem;
 }
 
 /* =========================================
@@ -41,7 +59,7 @@ h2 {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
-  background: white;
+  background: var(--bg-white);
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,30 +68,26 @@ h2 {
 .nav-menu a {
   text-decoration: none;
   padding: 12px 15px;
-  color: #126e82;
+  color: var(--primary);
   font-weight: bold;
   border-radius: 4px;
   flex: 1;
   text-align: center;
-  border: 2px solid #126e82;
+  border: 2px solid var(--primary);
   transition: all 0.2s ease;
 }
 
 .nav-menu a.active {
-  background-color: #126e82;
-  color: white;
+  background-color: var(--primary);
+  color: var(--bg-white);
 }
 
 .nav-menu a:hover {
-  background-color: #e8f0fe;
-}
-
-.nav-menu a.active:hover {
-  background-color: #0d5363;
+  background-color: var(--bg-soft);
 }
 
 /* =========================================
-   4. GENERAL TABLES
+   4. TABLES
    ========================================= */
 table {
   width: 100%;
@@ -82,223 +96,104 @@ table {
 }
 
 th {
-  background-color: #126e82;
-  color: white;
+  background-color: var(--primary);
+  color: var(--bg-white);
   padding: 15px;
-  font-size: 18px;
 }
 
 td {
   padding: 12px 15px;
   border-bottom: 1px solid #eee;
-  vertical-align: middle;
 }
 
-/* --- Prettier Table Rows --- */
-tbody tr:nth-child(even) {
-  background-color: #f8fbff;
-}
-
-tbody tr:hover {
-  background-color: #f0f5fa;
-}
+tbody tr:nth-child(even) { background-color: var(--row-stripe); }
+tbody tr:hover { background-color: var(--row-hover); }
 
 .total-row td {
-  border-top: 3px solid #126e82;
+  border-top: 3px solid var(--primary);
   font-weight: bold;
-  font-size: 18px;
-  color: #126e82;
-  background-color: #e8f0fe;
+  color: var(--primary);
+  background-color: var(--bg-soft);
 }
 
-.static-value {
-  padding: 8px;
-  display: inline-block;
-}
+/* Specific shopping table constraints */
+.shopping-table th, .shopping-table td { white-space: nowrap; }
+.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 100%; }
 
 /* =========================================
-   5. GENERAL FORMS & INPUTS
+   5. FORMS & INPUTS
    ========================================= */
-input[type="text"], 
-input[type="number"], 
-select {
+input, select {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  font-size: 16px;
   font-family: inherit;
-  box-sizing: border-box;
   background-color: #fafafa;
-  transition: all 0.3s ease;
 }
 
-input[type="text"]:focus, 
-input[type="number"]:focus, 
-select:focus {
+input:focus, select:focus {
   outline: none;
-  border-color: #126e82;
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
-  background-color: #ffffff;
 }
 
-.input-group {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+.shopping-table input[type="number"] { width: 60px; }
 
-.input-group select {
-  width: 80px; 
-  flex-shrink: 0;
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
   cursor: pointer;
+  accent-color: var(--primary);
 }
 
 /* =========================================
-   6. GENERAL BUTTONS
+   6. BUTTONS
    ========================================= */
 button, .btn {
-  background-color: #126e82;
-  color: white;
+  background-color: var(--primary);
+  color: var(--bg-white);
   border: none;
   padding: 15px;
   cursor: pointer;
   width: 100%;
-  font-size: 16px;
   font-weight: bold;
   border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 button:hover, .btn:hover {
-  background-color: #0d5363;
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.btn {
-  width: auto;
-  padding: 12px 20px;
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background-color: white;
-  color: #126e82;
-  border: 2px solid #126e82;
+  background-color: var(--bg-white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
 }
 
-.btn-secondary:hover {
-  background-color: #e8f0fe;
-  color: #0d5363;
-}
-
-/* Container for bottom action buttons */
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 20px;
-}
-
-/* =========================================
-   7. SHOPPING PAGE SPECIFICS
-   ========================================= */
-/* Auto-Adjust Column Widths */
-#shoppingTable th, 
-#shoppingTable td {
-  white-space: nowrap;
-}
-
-#shoppingTable select {
-  width: auto;
-}
-
-/* Force small columns to shrink-wrap */
-#shoppingTable th:nth-child(1), #shoppingTable td:nth-child(1),
-#shoppingTable th:nth-child(2), #shoppingTable td:nth-child(2),
-#shoppingTable th:nth-child(4), #shoppingTable td:nth-child(4),
-#shoppingTable th:nth-child(5), #shoppingTable td:nth-child(5),
-#shoppingTable th:nth-child(6), #shoppingTable td:nth-child(6) {
-  width: 1%;
-}
-
-/* Allow "Tárgy" column to stretch */
-#shoppingTable th:nth-child(3), 
-#shoppingTable td:nth-child(3) {
-  width: 100%;
-}
-
-/* Compact Inputs for the Table */
-#shoppingTable input[type="text"], 
-#shoppingTable input[type="number"], 
-#shoppingTable select {
-  padding: 8px;
-  font-size: 14px;
-}
-
-/* Prevent number inputs from getting squished */
-#shoppingTable input[type="number"] {
-  width: 60px;
-  min-width: 60px;
-}
-
-/* TEAL CHECKBOX (Bigger and easier to tap!) */
-#shoppingTable input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-  accent-color: #126e82;
-  margin: 0;
-}
-
-/* RED 'X' DELETE BUTTON */
-#shoppingTable .delete-btn {
-  color: #777; /* Soft grey icon */
-  font-size: 20px;
+.delete-btn {
+  color: #777;
   background: transparent;
-  padding: 5px;
   border: none;
+  font-size: 20px;
   cursor: pointer;
-  transition: color 0.2s;
+  padding: 5px 10px;
 }
 
-#shoppingTable .delete-btn:hover {
-  color: #d9534f; /* Only turns red when you hover over it */
-}
+.delete-btn:hover { color: var(--delete-red); }
 
 /* =========================================
-   8. MOBILE RESPONSIVENESS & SCROLLING
+   7. RESPONSIVENESS
    ========================================= */
-/* Swipeable window just for the table */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
-/* 📱 MOBILE OVERRIDES (Screens smaller than 600px) */
 @media (max-width: 600px) {
-  
-  .nav-menu {
-    flex-direction: column;
-    gap: 8px;
-  }
-   
-  .action-buttons {
-    flex-direction: column; 
-  }
-
-  .action-buttons .btn, .action-buttons .btn-secondary {
-    width: 100%;
-  }
-
-  th, td {
-    padding: 10px 8px;
-    font-size: 14px;
-  }
-
-  input[type="text"], input[type="number"], select {
-    font-size: 14px;
-    padding: 6px;
-  }
+  .nav-menu { flex-direction: column; }
+  .action-buttons { flex-direction: column; }
+  .btn { width: 100%; }
 }
