@@ -76,7 +76,7 @@
     }
 
     // Function to handle the save button
-    function saveData() {
+function saveData() {
       // Grab all the inputs from the table
       const inputs = document.querySelectorAll('input[type="text"]');
       let payload = {};
@@ -88,11 +88,30 @@
       });
 
       console.log("Adatok küldése:", payload);
-      alert("A mentés gombot megnyomtad! (Nézd meg a konzolt a böngészőben)");
       
-      // Note: The fetch() POST request will go here once we align the backend!
-    }
-  </script>
+      // Visual feedback for the user
+      const button = document.querySelector('button');
+      const originalText = button.innerText;
+      button.innerText = 'Mentés folyamatban... (Saving...)';
+
+      // It securely sends the payload to your Google Sheet
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Siker (Success)!', data);
+        alert('A táblázat sikeresen frissítve lett!');
+        button.innerText = originalText; // Reset button text
+      })
+      .catch(error => {
+        console.error('Hiba (Error)!', error);
+        alert('Hiba történt a mentés során.');
+        button.innerText = originalText; // Reset button text
+      });
+    }  </script>
 
 </body>
 </html>
