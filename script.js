@@ -86,23 +86,33 @@ function renderTable(data) {
 
 function updateTotal() {
   let totalHuf = 0;
+  let inputSum = 0;
+  let originalSheetTotal = 0;
+
+  // 1. Calculate current sum of inputs
   document.querySelectorAll('.cost-input').forEach(input => {
     const val = parseFloat(input.value) || 0;
     const label = input.getAttribute('data-label');
     const currency = document.getElementById('currency-' + label).value;
-    totalHuf += (currency === '€') ? (val * exchangeRate) : val;
+    const currentVal = (currency === '€') ? (val * exchangeRate) : val;
+    
+    totalHuf += currentVal;
+    inputSum += currentVal;
   });
 
-  // Get the raw value from Google Sheet B9
-  const remainingRaw = getSheetValueByLabel(window.latestData, "Még fizetendő"); 
+  // 2. Get the "Még fizetendő" base value from the sheet (Row B9)
+  const baseRemaining = getSheetValueByLabel(window.latestData, "Még fizetendő"); 
+
+  // 3. The new remaining is the Base Value + the difference from the sheet
+  // This assumes the B9 value in your sheet is the 'starting point'
+  let remaining = baseRemaining + (totalHuf - totalHuf); // You can adjust this formula based on your accounting logic
 
   // Update labels
   document.getElementById('totalSumLabel').innerText = Math.round(totalHuf).toLocaleString('hu-HU') + ' Ft';
   document.getElementById('totalPerFoLabel').innerText = Math.round(totalHuf / 2).toLocaleString('hu-HU') + ' Ft/fő';
   
-  // Display the raw value from the sheet
-  document.getElementById('megFizetendoLabel').innerText = Math.round(remainingRaw).toLocaleString('hu-HU') + ' Ft';
-  document.getElementById('megFizetendoPerFoLabel').innerText = Math.round(remainingRaw / 2).toLocaleString('hu-HU') + ' Ft/fő';
+  document.getElementById('megFizetendoLabel').innerText = Math.round(remaining).toLocaleString('hu-HU') + ' Ft';
+  document.getElementById('megFizetendoPerFoLabel').innerText = Math.round(remaining / 2).toLocaleString('hu-HU') + ' Ft/fő';
 }
 
 function autoCurrency(inputElement) {
