@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nyaralási költségek és bevásárlólista kezelése">
   <title>Nyaralás</title>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏝️</text></svg>">
-  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="nav-menu">
+  <nav class="nav-menu">
     <a href="index.html" class="active">Kezdőlap</a>
     <a href="costs.html">Költségek</a>
     <a href="shopping.html">Bevásárlólista</a>
-  </div>
+  </nav>
 
-  <div class="card" style="text-align: center; padding: 40px 20px;">
-    <h2 style="border-bottom: none; font-size: 28px; margin-bottom: 10px;">🏖️ Horvátországi Nyaralás</h2>
-    <p style="color: #555; font-size: 18px; margin-bottom: 30px;">Üdvözöllek!</p>
+  <main class="card home-card">
+    <h2>🏖️ Horvátországi Nyaralás</h2>
+    <p class="subtitle">Üdvözöllek!</p>
     
-    <p style="margin-bottom: 20px;">Válassz az alábbi lehetőségek közül:</p>
+    <p>Válassz az alábbi lehetőségek közül:</p>
 
-    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-      <button onclick="window.location.href='costs.html'" style="width: auto; padding: 15px 30px;">💸 Költségek</button>
-      <button onclick="window.location.href='shopping.html'" style="width: auto; padding: 15px 30px;">🛒 Bevásárlólista</button>
+    <div class="action-buttons home-buttons">
+      <button class="btn" onclick="window.location.href='costs.html'">💸 Költségek</button>
+      <button class="btn" onclick="window.location.href='shopping.html'">🛒 Bevásárlólista</button>
     </div>
-  </div>
+  </main>
 
 </body>
 </html>
