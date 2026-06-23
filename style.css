@@ -4,7 +4,7 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 850px; /* 🚨 FIXED: Was 450px. Now wide enough for the shopping list! */
+  max-width: 850px;
   margin: auto;
   background-color: #f9f9f9;
 }
@@ -13,7 +13,7 @@ body {
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow-x: auto; /* 🚨 FIXED: Was 'hidden'. Now allows scrolling on mobile! */
+  overflow-x: auto;
 }
 
 /* =========================================
@@ -162,6 +162,12 @@ button:hover {
 #shoppingTable th:nth-child(5), #shoppingTable td:nth-child(5),
 #shoppingTable th:nth-child(6), #shoppingTable td:nth-child(6) {
   width: 1%;
+}
+
+/* Prevent the number inputs from getting squished by the shrink-wrap */
+#shoppingTable input[type="number"] {
+  width: 60px;
+  min-width: 60px;
 }
 
 /* Allow "Tárgy" column to stretch */
