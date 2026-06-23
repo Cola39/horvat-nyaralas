@@ -252,22 +252,18 @@ button:hover, .btn:hover {
 }
 
 /* RED 'X' DELETE BUTTON */
-#shoppingTable .delete-btn, 
-#shoppingTable button {
-  color: #d9534f;
-  font-weight: bold;
-  font-size: 18px; /* Slightly larger text for the X */
+#shoppingTable .delete-btn {
+  color: #777; /* Soft grey icon */
+  font-size: 20px;
   background: transparent;
-  padding: 6px 10px;
-  border-radius: 4px;
-  box-shadow: none;
-  transform: none;
-  width: auto;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
-/* Soft red highlight when hovering over the X */
-#shoppingTable button:hover {
-  background-color: #ffe6e6;
+#shoppingTable .delete-btn:hover {
+  color: #d9534f; /* Only turns red when you hover over it */
 }
 
 /* =========================================
