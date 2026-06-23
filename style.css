@@ -238,7 +238,13 @@ button:hover, .btn:hover {
 
 /* 📱 MOBILE OVERRIDES (Only applies to screens smaller than 600px) */
 @media (max-width: 600px) {
-  
+
+  /* Stack the navigation menu vertically */
+  .nav-menu {
+    flex-direction: column;
+    gap: 8px; /* Slightly tighter gap so it doesn't take up too much screen height */
+  }
+   
   /* Stack the bottom buttons vertically */
   .action-buttons {
     flex-direction: column; 
