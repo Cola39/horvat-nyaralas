@@ -45,7 +45,7 @@ function renderTable() {
         <td style="text-align:center;">
           <input type="checkbox" ${item.kosarban ? 'checked' : ''} onchange="toggleCheckbox(${index}, this.checked)">
         </td>
-        <td><button onclick="deleteRow(${index})" style="color:red; cursor:pointer; border:none; background:none;">X</button></td>
+        <td><button class="delete-btn" onclick="deleteRow(${index})">🗑️</button></td>
       </tr>
     `;
   });
@@ -73,7 +73,7 @@ function deleteRow(index) {
 function saveShoppingList() {
   const button = document.querySelector('.btn');
   const originalText = button.innerText;
-  button.innerText = 'Mentés... (Saving...)';
+  button.innerText = 'Mentés...';
 
   const formData = new URLSearchParams();
   formData.append("type", "shopping"); 
