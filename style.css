@@ -61,8 +61,7 @@ h2 {
   color: #126e82;
   text-align: center;
   margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 15px;
+  padding: 15px 0;
   border-bottom: 2px solid #e8f0fe;
   font-size: 24px;
 }
