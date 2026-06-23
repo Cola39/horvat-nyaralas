@@ -78,17 +78,15 @@
     // Function to handle the save button
 function saveData() {
       const inputs = document.querySelectorAll('input[type="text"]');
-      
-      // 🚨 CHANGED: Package the data as standard Form Data
       const formData = new URLSearchParams();
 
       inputs.forEach(input => {
         const label = input.getAttribute('data-label');
         const value = input.value;
-        // Only append if there's actually a value typed in
-        if (value.trim() !== "") {
-          formData.append(label, value);
-        }
+        
+        // 🚨 CHANGED: We removed the "if not empty" check. 
+        // Now it sends the exact value, even if it is completely empty!
+        formData.append(label, value.trim());
       });
 
       console.log("Adatok küldése:", Object.fromEntries(formData));
@@ -97,18 +95,15 @@ function saveData() {
       const originalText = button.innerText;
       button.innerText = 'Mentés folyamatban... (Saving...)';
 
-      // Send using the standard format Google expects
       fetch(scriptURL, {
         method: 'POST',
-        body: formData // Automatically sets the right Content-Type headers
+        body: formData 
       })
       .then(response => {
         if (!response.ok) throw new Error('Hálózati hiba (Network error)');
         console.log('Siker (Success)!');
         alert('A táblázat sikeresen frissítve lett!');
         button.innerText = originalText;
-        
-        // Optional: reload the table to show fresh data
         location.reload(); 
       })
       .catch(error => {
