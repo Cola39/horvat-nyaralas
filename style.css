@@ -19,7 +19,7 @@
 body {
   font-family: var(--font-base);
   padding: 20px;
-  max-width: 950px; /* Slightly wider for tables */
+  max-width: 950px;
   margin: auto;
   background-color: var(--bg-body);
 }
@@ -78,12 +78,30 @@ h2 {
 /* =========================================
    4. TABLES
    ========================================= */
+/* Wrapper for horizontal scrolling */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0;
+}
+
 table { width: 100%; border-collapse: collapse; text-align: left; }
-th { background-color: var(--primary); color: var(--bg-white); padding: 15px; }
+th { background-color: var(--primary); color: var(--bg-white); padding: 15px; white-space: nowrap; }
 td { padding: 12px 15px; border-bottom: 1px solid #eee; }
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
+
+/* Shopping Table Specific */
+.shopping-table { table-layout: fixed; min-width: 600px; }
+.shopping-table th, .shopping-table td { padding: 8px; }
+.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 15%; }
+.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 10%; }
+.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 30%; }
+.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 12%; }
+.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 12%; text-align: center; }
+.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 8%; text-align: center; }
 
 /* Costs Table Specific */
 .total-row td {
@@ -102,20 +120,9 @@ tbody tr:hover { background-color: var(--row-hover); }
 }
 .per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
-/* Shopping Table Specific */
-.shopping-table { table-layout: fixed; }
-.shopping-table th, .shopping-table td { padding: 8px; }
-.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 15%; }
-.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 10%; }
-.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 30%; }
-.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 12%; }
-.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 12%; text-align: center; }
-.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 8%; text-align: center; }
-
 /* =========================================
    5. FORMS & INPUTS
    ========================================= */
-/* Cost Table Input Group */
 .input-group {
   display: flex;
   flex-direction: row;
@@ -136,14 +143,12 @@ input, select {
 .cost-input { flex: 1; }
 .currency-select { width: 70px; flex-shrink: 0; }
 
-/* General Input Focus */
 input:focus, select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
 }
 
-/* Checkbox alignment */
 input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
 
 /* =========================================
@@ -178,5 +183,4 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
 @media (max-width: 600px) {
   .nav-menu { flex-direction: column; }
   .action-buttons { flex-direction: column; }
-  .shopping-table { display: block; overflow-x: auto; }
 }
