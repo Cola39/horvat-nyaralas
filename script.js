@@ -2,11 +2,15 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxNCN0v54YmAPkFwv_Ie8
 const fetchURL = scriptURL + "?type=budget&t=" + new Date().getTime();
 
 let exchangeRate = 400; 
+window.latestData = []; // Global storage for B9 lookup
 
 window.onload = function() {
   fetch(fetchURL)
     .then(response => response.json())
     .then(data => {
+      // Store the rows globally so updateTotal can access them later
+      window.latestData = data.rows || data;
+      
       if (data && data.rows) {
         exchangeRate = data.exchangeRate || 400;
         renderTable(data.rows);
@@ -21,12 +25,20 @@ window.onload = function() {
     });
 };
 
+function getSheetValueByLabel(data, labelToFind) {
+  if (!data) return 0;
+  const row = data.find(r => r[0] === labelToFind);
+  return row ? parseFloat(row[1]) || 0 : 0;
+}
+
 function renderTable(data) {
   let html = `<table><thead><tr><th>Költségek</th><th>Összeg</th></tr></thead><tbody>`;
   
   data.forEach(row => {
     const label = row[0]; 
     let value = row[1];   
+
+    if (label === "" || label === "Per fő" || label === "Még fizetendő") return; 
 
     if (label === "Összesen") {
       html += `
@@ -38,9 +50,7 @@ function renderTable(data) {
                 <span id="totalPerFoLabel" style="font-weight: normal; color: #555;">0 Ft/fő</span>
              </div>
           </td>
-        </tr>`;
-    } else if (label === "Még fizetendő") {
-      html += `
+        </tr>
         <tr>
           <td>Még fizetendő</td>
           <td>
@@ -83,14 +93,16 @@ function updateTotal() {
     totalHuf += (currency === '€') ? (val * exchangeRate) : val;
   });
 
-  // Calculate Remaining (currently total, add paid amount logic here if needed)
-  const remaining = getSheetValueByLabel(window.latestData, "Még fizetendő"); 
+  // Get the raw value from Google Sheet B9
+  const remainingRaw = getSheetValueByLabel(window.latestData, "Még fizetendő"); 
 
   // Update labels
   document.getElementById('totalSumLabel').innerText = Math.round(totalHuf).toLocaleString('hu-HU') + ' Ft';
   document.getElementById('totalPerFoLabel').innerText = Math.round(totalHuf / 2).toLocaleString('hu-HU') + ' Ft/fő';
-  document.getElementById('megFizetendoLabel').innerText = Math.round(remaining).toLocaleString('hu-HU') + ' Ft';
-  document.getElementById('megFizetendoPerFoLabel').innerText = Math.round(remaining / 2).toLocaleString('hu-HU') + ' Ft/fő';
+  
+  // Display the raw value from the sheet
+  document.getElementById('megFizetendoLabel').innerText = Math.round(remainingRaw).toLocaleString('hu-HU') + ' Ft';
+  document.getElementById('megFizetendoPerFoLabel').innerText = Math.round(remainingRaw / 2).toLocaleString('hu-HU') + ' Ft/fő';
 }
 
 function autoCurrency(inputElement) {
