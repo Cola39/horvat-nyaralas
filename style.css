@@ -222,3 +222,14 @@ button:hover, .btn:hover {
   justify-content: center; 
   gap: 15px;
 }
+
+/* Styling for the loading state */
+.loading-state {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Ensure the table responsive wrapper looks good */
+.table-responsive {
+  margin-bottom: 20px;
+}
