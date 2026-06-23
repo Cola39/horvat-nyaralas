@@ -1,5 +1,5 @@
 /* =========================================
-   GENERAL LAYOUT
+   1. GENERAL LAYOUT
    ========================================= */
 body {
   font-family: Arial, sans-serif;
@@ -15,8 +15,26 @@ body {
   border-radius: 8px;
 }
 
+/* Creates a narrower card perfectly sized for 2 columns (Costs page) */
+.narrow-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 /* =========================================
-   NAVIGATION MENU
+   2. TYPOGRAPHY & HEADERS
+   ========================================= */
+h2 {
+  color: #126e82;
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px 0;
+  border-bottom: 2px solid #e8f0fe;
+  font-size: 24px;
+}
+
+/* =========================================
+   3. NAVIGATION MENU
    ========================================= */
 .nav-menu {
   display: flex;
@@ -55,19 +73,7 @@ body {
 }
 
 /* =========================================
-   TYPOGRAPHY & HEADERS
-   ========================================= */
-h2 {
-  color: #126e82;
-  text-align: center;
-  margin-top: 20px;
-  padding: 15px 0;
-  border-bottom: 2px solid #e8f0fe;
-  font-size: 24px;
-}
-
-/* =========================================
-   TABLE STYLING
+   4. GENERAL TABLES
    ========================================= */
 table {
   width: 100%;
@@ -88,9 +94,21 @@ td {
   vertical-align: middle;
 }
 
+/* --- Prettier Table Rows --- */
+tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+tbody tr:hover {
+  background-color: #f0f5fa;
+}
+
 .total-row td {
   border-top: 3px solid #126e82;
   font-weight: bold;
+  font-size: 18px;
+  color: #126e82;
+  background-color: #e8f0fe;
 }
 
 .static-value {
@@ -99,47 +117,45 @@ td {
 }
 
 /* =========================================
-   FORMS & INPUTS (Textboxes & Dropdowns)
+   5. GENERAL FORMS & INPUTS
    ========================================= */
 input[type="text"], 
 input[type="number"], 
 select {
   width: 100%;
-  padding: 12px; /* Nice, comfortable height */
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 6px; /* Smooth, modern corners */
+  border-radius: 6px;
   font-size: 16px;
   font-family: inherit;
   box-sizing: border-box;
   background-color: #fafafa;
-  transition: all 0.3s ease; /* Smooth animation */
+  transition: all 0.3s ease;
 }
 
-/* The "Glow" effect when you click inside to type */
 input[type="text"]:focus, 
 input[type="number"]:focus, 
 select:focus {
   outline: none;
   border-color: #126e82;
-  box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2); /* Beautiful teal halo */
+  box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
   background-color: #ffffff;
 }
 
-/* Perfect alignment for the Cost input + Currency Dropdown */
 .input-group {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-/* Keep the dropdown small and neat */
 .input-group select {
   width: 80px; 
   flex-shrink: 0;
   cursor: pointer;
 }
+
 /* =========================================
-   BUTTONS
+   6. GENERAL BUTTONS
    ========================================= */
 button, .btn {
   background-color: #126e82;
@@ -150,24 +166,21 @@ button, .btn {
   width: 100%;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 4px; /* Matches the nav buttons! */
-  transition: all 0.2s ease; /* Smooth hover animation */
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-/* Hover effect with a tiny "lift" animation */
 button:hover, .btn:hover {
   background-color: #0d5363;
   transform: translateY(-2px); 
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Specific styling for the side-by-side shopping buttons */
 .btn {
   width: auto;
   padding: 12px 20px;
 }
 
-/* Secondary Buttons (Outlined to match inactive nav buttons) */
 .btn-secondary {
   background-color: white;
   color: #126e82;
@@ -179,23 +192,18 @@ button:hover, .btn:hover {
   color: #0d5363;
 }
 
-/* Keep the delete 'X' button from getting giant blue backgrounds */
-#shoppingTable button {
-  width: auto;
-  padding: 5px 10px;
-  background: none;
-  box-shadow: none;
-  transform: none;
-}
-
-#shoppingTable button:hover {
-  background-color: #ffe6e6; /* Light red hover */
-  border-radius: 4px;
+/* Container for bottom action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
 }
 
 /* =========================================
-   SMART TABLE AUTO-ADJUST (Shopping List)
+   7. SHOPPING PAGE SPECIFICS
    ========================================= */
+/* Auto-Adjust Column Widths */
 #shoppingTable th, 
 #shoppingTable td {
   white-space: nowrap;
@@ -214,58 +222,79 @@ button:hover, .btn:hover {
   width: 1%;
 }
 
-/* Prevent the number inputs from getting squished by the shrink-wrap */
-#shoppingTable input[type="number"] {
-  width: 60px;
-  min-width: 60px;
-}
-
 /* Allow "Tárgy" column to stretch */
 #shoppingTable th:nth-child(3), 
 #shoppingTable td:nth-child(3) {
   width: 100%;
 }
 
+/* Compact Inputs for the Table */
+#shoppingTable input[type="text"], 
+#shoppingTable input[type="number"], 
+#shoppingTable select {
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* Prevent number inputs from getting squished */
+#shoppingTable input[type="number"] {
+  width: 60px;
+  min-width: 60px;
+}
+
+/* Teal Checkbox */
+#shoppingTable input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #126e82;
+  margin: 0;
+}
+
+/* Red 'X' Delete Button */
+#shoppingTable .delete-btn, 
+#shoppingTable button {
+  color: #d9534f;
+  font-weight: bold;
+  font-size: 16px;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 4px;
+  box-shadow: none;
+  transform: none;
+  width: auto;
+}
+
+#shoppingTable button:hover {
+  background-color: #ffe6e6;
+}
 
 /* =========================================
-   MOBILE RESPONSIVENESS & SCROLLING
+   8. MOBILE RESPONSIVENESS & SCROLLING
    ========================================= */
-
-/* Creates a swipeable window just for the table */
+/* Swipeable window just for the table */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Makes scrolling buttery smooth on iPhones */
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Default layout for the bottom buttons (Desktop) */
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 20px;
-}
-
-/* 📱 MOBILE OVERRIDES (Only applies to screens smaller than 600px) */
+/* 📱 MOBILE OVERRIDES (Screens smaller than 600px) */
 @media (max-width: 600px) {
-
-  /* Stack the navigation menu vertically */
+  
   .nav-menu {
     flex-direction: column;
-    gap: 8px; /* Slightly tighter gap so it doesn't take up too much screen height */
+    gap: 8px;
   }
    
-  /* Stack the bottom buttons vertically */
   .action-buttons {
     flex-direction: column; 
   }
 
-  /* Make sure stacked buttons take up the full width */
   .action-buttons .btn, .action-buttons .btn-secondary {
     width: 100%;
   }
 
-  /* Make table text and padding slightly smaller to fit more on screen */
   th, td {
     padding: 10px 8px;
     font-size: 14px;
@@ -275,31 +304,4 @@ button:hover, .btn:hover {
     font-size: 14px;
     padding: 6px;
   }
-}
-
-
-/* Creates a narrower card perfectly sized for 2 columns */
-.narrow-card {
-  max-width: 600px;
-  margin: 0 auto; /* Centers the card on the screen */
-}
-
-/* --- Prettier Table Rows --- */
-/* Adds subtle alternating "zebra stripes" so rows are easy to read */
-tbody tr:nth-child(even) {
-  background-color: #f8fbff;
-}
-
-/* Highlights the row your mouse is currently hovering over */
-tbody tr:hover {
-  background-color: #f0f5fa;
-}
-
-/* Make the Total row pop! */
-.total-row td {
-  border-top: 3px solid #126e82;
-  font-weight: bold;
-  font-size: 18px;
-  color: #126e82;
-  background-color: #e8f0fe;
 }
