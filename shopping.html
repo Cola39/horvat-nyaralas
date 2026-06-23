@@ -15,31 +15,31 @@
     <a href="shopping.html" class="active">Bevásárlólista</a>
   </div>
 
-  <div class="card">
+<div class="card">
     <h2>Bevásárlólista</h2>
     
     <div id="loading" style="padding: 20px; text-align: center;">
-      <em>Betöltés...</em>
+      <em>Betöltés... (Loading...)</em>
     </div>
     
-    <table id="shoppingTable" style="display:none;">
-      <thead>
-        <tr>
-          <th>Táska</th>
-          <th>Kat</th>
-          <th>Tárgy</th>
-          <th>Db</th>
-          <th>Kosárban?</th>
-          <th></th> 
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        </tbody>
-    </table>
-
-    <div style="display: flex; justify-content: space-between; padding: 20px;">
-      <button class="btn btn-secondary" onclick="addRow()">+ Új tétel</button>
-      <button class="btn" onclick="saveShoppingList()">Mentés</button>
+    <div class="table-responsive">
+      <table id="shoppingTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>Táska</th>
+            <th>Kat</th>
+            <th>Tárgy</th>
+            <th>Db</th>
+            <th>Kosárban?</th>
+            <th></th> 
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          </tbody>
+      </table>
+    </div> <div class="action-buttons">
+      <button class="btn btn-secondary" onclick="addRow()">+ Új Tárgy (Add Item)</button>
+      <button class="btn" onclick="saveShoppingList()">Mentés (Save List)</button>
     </div>
   </div>
 
