@@ -1,7 +1,7 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      max-width: 450px;
+      max-width: 850px;
       margin: auto;
       background-color: #f9f9f9;
     }
@@ -9,7 +9,7 @@
       background: white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
     }
     table {
       width: 100%;
