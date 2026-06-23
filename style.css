@@ -99,35 +99,45 @@ td {
 }
 
 /* =========================================
-   FORMS & INPUTS
+   FORMS & INPUTS (Textboxes & Dropdowns)
    ========================================= */
 input[type="text"], 
-input[type="number"] {
+input[type="number"], 
+select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #4285f4;
-  background-color: #e8f0fe;
-  border-radius: 4px;
-  font-size: 15px;
+  padding: 12px; /* Nice, comfortable height */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Smooth, modern corners */
+  font-size: 16px;
+  font-family: inherit;
   box-sizing: border-box;
+  background-color: #fafafa;
+  transition: all 0.3s ease; /* Smooth animation */
 }
 
+/* The "Glow" effect when you click inside to type */
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+select:focus {
+  outline: none;
+  border-color: #126e82;
+  box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2); /* Beautiful teal halo */
+  background-color: #ffffff;
+}
+
+/* Perfect alignment for the Cost input + Currency Dropdown */
 .input-group {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
-select {
-  padding: 8px;
-  border: 1px solid #4285f4;
-  background-color: white;
-  border-radius: 4px;
-  font-size: 15px;
+/* Keep the dropdown small and neat */
+.input-group select {
+  width: 80px; 
+  flex-shrink: 0;
   cursor: pointer;
-  color: #126e82;
-  font-weight: bold;
 }
-
 /* =========================================
    BUTTONS
    ========================================= */
