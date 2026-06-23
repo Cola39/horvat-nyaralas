@@ -61,3 +61,18 @@
     button:hover {
       background-color: #0d5363;
     }
+    /* New styles for the input + dropdown combo */
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+select {
+  padding: 8px;
+  border: 1px solid #4285f4;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #126e82;
+  font-weight: bold;
+}
