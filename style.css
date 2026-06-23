@@ -173,3 +173,34 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
   .action-buttons { flex-direction: column; }
   .btn { width: 100%; }
 }
+
+
+/* Fix for the input + select alignment */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adds space between input and dropdown */
+}
+
+/* Ensure inputs in the budget table take the full space but stay with the select */
+.cost-input {
+  flex: 1; /* Makes input fill available space */
+  min-width: 80px;
+}
+
+.currency-select {
+  width: auto; /* Shrinks select to fit content */
+  padding: 12px 8px;
+}
+
+/* Improving Summary Row spacing */
+.total-row td {
+  padding: 20px 15px; /* Increased vertical padding for better spacing */
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Ensures space between the main total and the 'per-fő' text */
+}
