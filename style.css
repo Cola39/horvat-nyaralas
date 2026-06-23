@@ -32,18 +32,18 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
-  text-align: center; /* Added to center all text inside cards */
+  text-align: center;
 }
 
 .narrow-card { max-width: 800px; margin: 0 auto; }
 
 h2 {
   color: var(--primary);
-  margin-top: 20px;
-  padding: 15px 0;
+  margin-top: 5px; /* Reduced top margin to decrease gap */
+  padding: 5px 0 15px 0; /* Reduced top padding to decrease gap */
   border-bottom: 2px solid var(--bg-soft);
   font-size: 1.5rem;
-  text-align: center; /* Explicitly center headers */
+  text-align: center;
 }
 
 /* =========================================
@@ -84,23 +84,6 @@ td { padding: 12px 15px; border-bottom: 1px solid #eee; }
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
-
-/* Costs Table */
-.total-row td {
-  border-top: 3px solid var(--primary);
-  font-weight: bold;
-  color: var(--primary);
-  background-color: var(--bg-soft);
-  padding: 20px 15px;
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-.per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
 /* Shopping Table */
 .shopping-table { table-layout: fixed; }
@@ -149,7 +132,16 @@ button, .btn {
 
 button:hover, .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
 
-/* Updated Home page buttons */
+/* REMOVED background from delete button */
+.delete-btn {
+  background: transparent !important;
+  color: #777;
+  padding: 8px;
+  width: auto;
+  font-size: 18px;
+}
+.delete-btn:hover { color: var(--delete-red); background: transparent !important; transform: none; }
+
 .action-buttons { 
   display: flex; 
   gap: 15px; 
