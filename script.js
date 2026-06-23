@@ -1,11 +1,17 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxNCN0v54YmAPkFwv_Ie892IsvF80uAHt25lV56SYq4nvfEgvJLRnTANShnuIqYvgqvog/exec'; 
 const fetchURL = scriptURL + "?type=budget";
 
+// We store the live exchange rate here
+let exchangeRate = 400; 
+
 window.onload = function() {
-  // 🚨 Use fetchURL here instead of scriptURL
   fetch(fetchURL)
     .then(response => response.json())
-    .then(data => renderTable(data))
+    .then(data => {
+      // data now contains both the rate and the rows from our new Code.gs
+      exchangeRate = data.exchangeRate || 400;
+      renderTable(data.rows);
+    })
     .catch(error => {
       document.getElementById('tableContainer').innerHTML = "<p style='color:red; padding: 20px;'>Hiba a betöltéskor.</p>";
       console.error(error);
@@ -40,12 +46,8 @@ function renderTable(data) {
     html += `<td>${label}</td>`;
 
     if (isLocked) {
-      let displayValue = value;
-      if (value !== "" && !isNaN(value)) {
-        let num = parseFloat(value);
-        displayValue = (num < 1000) ? num + " €" : num + " Ft";
-      }
-      html += `<td><span class="static-value">${displayValue}</span></td>`;
+      // We give the total a special ID so we can update it live
+      html += `<td><span class="static-value" id="totalSumLabel">0 Ft</span></td>`;
     } else {
       let numValue = parseFloat(value);
       let defaultCurrency = 'Ft'; 
@@ -54,10 +56,11 @@ function renderTable(data) {
         defaultCurrency = '€';
       }
 
+      // Added classes and an onchange event so it calculates live when you type!
       html += `<td>
         <div class="input-group">
-          <input type="text" data-label="${label}" value="${value}" oninput="autoCurrency(this)">
-          <select id="currency-${label}">
+          <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
+          <select id="currency-${label}" onchange="updateTotal()">
             <option value="Ft" ${defaultCurrency === 'Ft' ? 'selected' : ''}>Ft</option>
             <option value="€" ${defaultCurrency === '€' ? 'selected' : ''}>€</option>
           </select>
@@ -70,6 +73,34 @@ function renderTable(data) {
 
   html += `</tbody></table>`;
   document.getElementById('tableContainer').innerHTML = html;
+  
+  // Calculate the total immediately after rendering the table
+  updateTotal();
+}
+
+// Calculates the live sum based on currency selection
+function updateTotal() {
+  let totalHuf = 0;
+  const inputs = document.querySelectorAll('.cost-input');
+  
+  inputs.forEach(input => {
+    const val = parseFloat(input.value);
+    if (!isNaN(val)) {
+      const label = input.getAttribute('data-label');
+      const currency = document.getElementById('currency-' + label).value;
+      
+      if (currency === '€') {
+        // Multiply EUR by the live exchange rate
+        totalHuf += (val * exchangeRate);
+      } else {
+        // Add HUF exactly as it is
+        totalHuf += val;
+      }
+    }
+  });
+
+  // Format the final number nicely (e.g., 150 000 Ft) and update the screen
+  document.getElementById('totalSumLabel').innerText = Math.round(totalHuf).toLocaleString('hu-HU') + ' Ft';
 }
 
 function autoCurrency(inputElement) {
