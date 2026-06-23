@@ -78,30 +78,42 @@ h2 {
 /* =========================================
    4. TABLES
    ========================================= */
-/* Wrapper for horizontal scrolling */
+/* Container ensures the scroll bar appears if content is wider than screen */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   margin: 20px 0;
+  -webkit-overflow-scrolling: touch;
 }
 
-table { width: 100%; border-collapse: collapse; text-align: left; }
-th { background-color: var(--primary); color: var(--bg-white); padding: 15px; white-space: nowrap; }
-td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  text-align: left; 
+}
+
+th { 
+  background-color: var(--primary); 
+  color: var(--bg-white); 
+  padding: 15px; 
+  white-space: nowrap; 
+}
+
+td { 
+  padding: 12px 15px; 
+  border-bottom: 1px solid #eee; 
+}
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
 
 /* Shopping Table Specific */
-.shopping-table { table-layout: fixed; min-width: 600px; }
+.shopping-table { 
+  min-width: 600px; /* Forces scrolling if parent is narrower than 600px */
+  table-layout: auto; 
+}
+
 .shopping-table th, .shopping-table td { padding: 8px; }
-.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 15%; }
-.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 10%; }
-.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 30%; }
-.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 12%; }
-.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 12%; text-align: center; }
-.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 8%; text-align: center; }
 
 /* Costs Table Specific */
 .total-row td {
