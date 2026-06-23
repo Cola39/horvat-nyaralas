@@ -109,11 +109,21 @@ tbody tr:hover { background-color: var(--row-hover); }
 
 /* Shopping Table Specific */
 .shopping-table { 
-  min-width: 600px; /* Forces scrolling if parent is narrower than 600px */
-  table-layout: auto; 
+  min-width: 600px;
+  table-layout: fixed; 
 }
 
-.shopping-table th, .shopping-table td { padding: 8px; }
+.shopping-table th, .shopping-table td { 
+  padding: 8px; 
+  word-wrap: break-word;
+}
+
+.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 20%; }
+.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 8%; }
+.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 40%; }
+.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 8%; }
+.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 16%; text-align: center; }
+.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 8%; text-align: center; }
 
 /* Costs Table Specific */
 .total-row td {
