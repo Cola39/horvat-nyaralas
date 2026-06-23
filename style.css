@@ -76,3 +76,40 @@ select {
   color: #126e82;
   font-weight: bold;
 }
+
+/* --- Navigation Menu Styling --- */
+.nav-menu {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.nav-menu a {
+  text-decoration: none;
+  padding: 12px 15px;
+  color: #126e82;
+  font-weight: bold;
+  border-radius: 4px;
+  flex: 1;
+  text-align: center;
+  border: 2px solid #126e82;
+  transition: all 0.2s ease;
+}
+
+/* This styles the button of the page you are currently on */
+.nav-menu a.active {
+  background-color: #126e82;
+  color: white;
+}
+
+.nav-menu a:hover {
+  background-color: #e8f0fe;
+}
+
+.nav-menu a.active:hover {
+  background-color: #0d5363;
+}
