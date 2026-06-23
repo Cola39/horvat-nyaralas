@@ -8,11 +8,12 @@ window.onload = () => {
     .then(res => res.json())
     .then(data => {
       shoppingData = data.map(row => ({
-        taska: row[0] || "hűtőtáska",
-        kat: row[1] || "1",
-        targy: row[2] || "",
-        db: row[3] || "1",
-        kosarban: String(row[4]).toUpperCase() === "TRUE"
+          taska: row[0] || "hűtőtáska",
+          kat: row[1] || "1",
+          kategoria: row[2] || "",
+          targy: row[3] || "",
+          db: row[4] || "1",
+          kosarban: String(row[5]).toUpperCase() === "TRUE"
       }));
       
       sortAndRender();
@@ -43,6 +44,7 @@ function renderTable() {
         </select>
       </td>
       <td><input type="number" value="${item.kat}" oninput="updateData(${index}, 'kat', this.value)"></td>
+      <td><input type="text" value="${item.kategoria || ''}" oninput="updateData(${index}, 'kategoria', this.value)"></td>
       <td><input type="text" value="${item.targy}" oninput="updateData(${index}, 'targy', this.value)"></td>
       <td><input type="number" value="${item.db}" oninput="updateData(${index}, 'db', this.value)"></td>
       <td style="text-align:center;">
@@ -62,7 +64,7 @@ function toggleCheckbox(i, isChecked) {
 }
 
 function addRow() {
-  shoppingData.push({ taska: "hűtőtáska", kat: "9", targy: "", db: "1", kosarban: false });
+  shoppingData.push({ taska: "hűtőtáska", kat: "9", kategoria: "", targy: "", db: "1", kosarban: false });
   sortAndRender();
 }
 
