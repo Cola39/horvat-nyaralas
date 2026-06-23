@@ -38,51 +38,48 @@ function renderTable(data) {
       <tbody>
   `;
   
-  let isLocked = false;
-
   data.forEach(row => {
     const label = row[0]; 
     let value = row[1];   
 
     if (label === "" && value === "") return; 
 
+    // Handle the "Összesen" row specially
     if (label === "Összesen") {
-      isLocked = true;
-    }
-
-    html += `<tr class="${label === 'Összesen' ? 'total-row' : ''}">`;
-    html += `<td>${label}</td>`;
-
-    if (isLocked) {
-      // We give the total a special ID so we can update it live
-      html += `<td><span class="static-value" id="totalSumLabel">0 Ft</span></td>`;
-    } else {
-      let numValue = parseFloat(value);
-      let defaultCurrency = 'Ft'; 
+      html += `<tr class="total-row">
+                 <td>${label}</td>
+                 <td><span class="static-value" id="totalSumLabel">0 Ft</span><br>
+                 <small id="perFoLabel" style="color: #666;"></small></td>
+               </tr>`;
+    } 
+    // Handle all other rows
+    else {
+      let isTotalRelated = label.includes("Per fő") || label.includes("Még fizetendő");
       
-      if (!isNaN(numValue) && numValue < 1000) {
-        defaultCurrency = '€';
-      }
+      html += `<tr>
+                 <td>${label}</td>
+                 <td>`;
+      
+      if (isTotalRelated) {
+        html += `<span class="static-value">0 Ft</span>`;
+      } else {
+        let numValue = parseFloat(value);
+        let defaultCurrency = (!isNaN(numValue) && numValue < 1000) ? '€' : 'Ft';
 
-      // Added classes and an onchange event so it calculates live when you type!
-      html += `<td>
-        <div class="input-group">
-          <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
-          <select id="currency-${label}" onchange="updateTotal()">
-            <option value="Ft" ${defaultCurrency === 'Ft' ? 'selected' : ''}>Ft</option>
-            <option value="€" ${defaultCurrency === '€' ? 'selected' : ''}>€</option>
-          </select>
-        </div>
-      </td>`;
+        html += `<div class="input-group">
+                   <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
+                   <select id="currency-${label}" onchange="updateTotal()">
+                     <option value="Ft" ${defaultCurrency === 'Ft' ? 'selected' : ''}>Ft</option>
+                     <option value="€" ${defaultCurrency === '€' ? 'selected' : ''}>€</option>
+                   </select>
+                 </div>`;
+      }
+      html += `</td></tr>`;
     }
-    
-    html += `</tr>`;
   });
 
   html += `</tbody></table>`;
   document.getElementById('tableContainer').innerHTML = html;
-  
-  // Calculate the total immediately after rendering the table
   updateTotal();
 }
 
@@ -98,19 +95,39 @@ function updateTotal() {
       const currency = document.getElementById('currency-' + label).value;
       
       if (currency === '€') {
-        // Multiply EUR by the live exchange rate
         totalHuf += (val * exchangeRate);
       } else {
-        // Add HUF exactly as it is
         totalHuf += val;
       }
     }
   });
 
-  // Format the final number nicely (e.g., 150 000 Ft) and update the screen
-  document.getElementById('totalSumLabel').innerText = Math.round(totalHuf).toLocaleString('hu-HU') + ' Ft';
-}
+  // 1. Update total sum
+  const formattedTotal = Math.round(totalHuf).toLocaleString('hu-HU');
+  document.getElementById('totalSumLabel').innerText = formattedTotal + ' Ft';
 
+  // 2. Perform your new calculations
+  // Assuming you have fixed labels in your sheet for these:
+  // "Per fő" (Total / 2)
+  // "Még fizetendő" (Result - Paid amount)
+  
+  const perFoValue = Math.round(totalHuf / 2).toLocaleString('hu-HU');
+  document.getElementById('perFoLabel').innerText = perFoValue + ' Ft/fő';
+  
+  // Find your table elements by their text content or specific IDs if you add them
+  // A simple way is to target the rows by their text
+  const rows = document.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    const label = row.querySelector('td:first-child').innerText;
+    if (label.includes("Per fő")) {
+      row.querySelector('.static-value').innerText = perFoValue + ' Ft/fő';
+    }
+    if (label.includes("Még fizetendő")) {
+      // You can add logic here to subtract whatever amount is already paid
+      row.querySelector('.static-value').innerText = "0 Ft/fő"; 
+    }
+  });
+}
 function autoCurrency(inputElement) {
   const val = parseFloat(inputElement.value);
   const label = inputElement.getAttribute('data-label');
