@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Költségek Kalkulátor</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Költségek</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>">
+  
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -14,12 +17,20 @@
   </div>
 
   <div class="card">
+    
     <div id="tableContainer">
-      <p style="padding: 20px; text-align: center;"><em>Adatok betöltése... (Loading...)</em></p>
+      <p style="padding: 20px; text-align: center;">
+        <em>Adatok betöltése... (Loading...)</em>
+      </p>
     </div>
-    <button onclick="saveData()">Mentés (Save)</button>
+    
+    <div style="padding: 20px; padding-top: 0;">
+      <button onclick="saveData()">Mentés (Save)</button>
+    </div>
+    
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
