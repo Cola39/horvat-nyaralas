@@ -242,7 +242,7 @@ button:hover, .btn:hover {
   min-width: 60px;
 }
 
-/* Teal Checkbox */
+/* TEAL CHECKBOX (Bigger and easier to tap!) */
 #shoppingTable input[type="checkbox"] {
   width: 22px;
   height: 22px;
@@ -251,12 +251,12 @@ button:hover, .btn:hover {
   margin: 0;
 }
 
-/* Red 'X' Delete Button */
+/* RED 'X' DELETE BUTTON */
 #shoppingTable .delete-btn, 
 #shoppingTable button {
   color: #d9534f;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px; /* Slightly larger text for the X */
   background: transparent;
   padding: 6px 10px;
   border-radius: 4px;
@@ -265,6 +265,7 @@ button:hover, .btn:hover {
   width: auto;
 }
 
+/* Soft red highlight when hovering over the X */
 #shoppingTable button:hover {
   background-color: #ffe6e6;
 }
