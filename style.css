@@ -36,13 +36,6 @@ body {
 
 .narrow-card { max-width: 600px; margin: 0 auto; }
 
-/* Page Specifics */
-.home-card { text-align: center; padding: 40px 20px; }
-.home-card h2 { border-bottom: none; font-size: 28px; margin-bottom: 10px; }
-.subtitle { color: #555; font-size: 18px; margin-bottom: 30px; }
-.loading-state { padding: 20px; text-align: center; }
-.error { color: var(--delete-red); padding: 20px; text-align: center; }
-
 h2 {
   color: var(--primary);
   text-align: center;
@@ -90,27 +83,35 @@ td { padding: 12px 15px; border-bottom: 1px solid #eee; }
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
-.done-row { opacity: 0.6; text-decoration: line-through; }
 
 .total-row td {
   border-top: 3px solid var(--primary);
   font-weight: bold;
   color: var(--primary);
   background-color: var(--bg-soft);
+  padding: 20px 15px;
 }
 
-/* Shopping & Budget Constraints */
-.shopping-table th, .shopping-table td { white-space: nowrap; }
-.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 100%; }
-.table-responsive { width: 100%; overflow-x: auto; margin-bottom: 20px; }
-.summary-row { display: flex; justify-content: space-between; align-items: center; }
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
 .per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
 /* =========================================
    5. FORMS & INPUTS
    ========================================= */
-input, select {
+.input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   width: 100%;
+}
+
+input, select {
   padding: 12px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -118,20 +119,20 @@ input, select {
   background-color: #fafafa;
 }
 
+.cost-input {
+  flex: 1;
+  width: auto;
+}
+
+.currency-select {
+  width: 70px;
+  flex-shrink: 0;
+}
+
 input:focus, select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
-}
-
-.shopping-table input[type="number"] { width: 60px; }
-.currency-select { width: 70px; margin-left: 5px; }
-
-input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-  accent-color: var(--primary);
 }
 
 /* =========================================
@@ -150,20 +151,7 @@ button, .btn {
 }
 
 button:hover, .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
-.btn-secondary { background-color: var(--bg-white); color: var(--primary); border: 2px solid var(--primary); }
-
-.delete-btn {
-  color: #777;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px 10px;
-}
-.delete-btn:hover { color: var(--delete-red); }
-
-.action-buttons { display: flex; gap: 15px; }
-.home-buttons { justify-content: center; }
+.action-buttons { display: flex; gap: 15px; margin-top: 20px; }
 
 /* =========================================
    7. RESPONSIVENESS
@@ -171,36 +159,4 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
 @media (max-width: 600px) {
   .nav-menu { flex-direction: column; }
   .action-buttons { flex-direction: column; }
-  .btn { width: 100%; }
-}
-
-
-/* Fix for the input + select alignment */
-.input-group {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Adds space between input and dropdown */
-}
-
-/* Ensure inputs in the budget table take the full space but stay with the select */
-.cost-input {
-  flex: 1; /* Makes input fill available space */
-  min-width: 80px;
-}
-
-.currency-select {
-  width: auto; /* Shrinks select to fit content */
-  padding: 12px 8px;
-}
-
-/* Improving Summary Row spacing */
-.total-row td {
-  padding: 20px 15px; /* Increased vertical padding for better spacing */
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px; /* Ensures space between the main total and the 'per-fő' text */
 }
