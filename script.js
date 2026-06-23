@@ -1,5 +1,5 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxNCN0v54YmAPkFwv_Ie892IsvF80uAHt25lV56SYq4nvfEgvJLRnTANShnuIqYvgqvog/exec'; 
-const fetchURL = scriptURL + "?type=budget";
+const fetchURL = scriptURL + "?type=budget&t=" + new Date().getTime();
 
 // We store the live exchange rate here
 let exchangeRate = 400; 
@@ -15,7 +15,7 @@ window.onload = function() {
       } 
       // If we receive the OLD data format (just an array)
       else if (Array.isArray(data)) {
-        console.warn("Még a régi adat érkezik a Google-től! (Still getting old data)");
+        console.warn("Még a régi adat érkezik a Google-től!");
         exchangeRate = 400; // Fallback rate
         renderTable(data);
       }
