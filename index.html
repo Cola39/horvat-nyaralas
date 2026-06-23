@@ -77,41 +77,44 @@
 
     // Function to handle the save button
 function saveData() {
-      // Grab all the inputs from the table
       const inputs = document.querySelectorAll('input[type="text"]');
-      let payload = {};
+      
+      // 🚨 CHANGED: Package the data as standard Form Data
+      const formData = new URLSearchParams();
 
-      // Map the input values to their labels
       inputs.forEach(input => {
         const label = input.getAttribute('data-label');
-        payload[label] = input.value;
+        const value = input.value;
+        // Only append if there's actually a value typed in
+        if (value.trim() !== "") {
+          formData.append(label, value);
+        }
       });
 
-      console.log("Adatok küldése:", payload);
+      console.log("Adatok küldése:", Object.fromEntries(formData));
       
-      // Visual feedback for the user
       const button = document.querySelector('button');
       const originalText = button.innerText;
       button.innerText = 'Mentés folyamatban... (Saving...)';
 
-      // It securely sends the payload to your Google Sheet
+      // Send using the standard format Google expects
       fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors', // <--- This is the magic fix
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
+        body: formData // Automatically sets the right Content-Type headers
       })
-      .then(() => {
-        // Because of 'no-cors', we can't read the exact response, 
-        // but if it gets here without a network crash, it succeeded!
+      .then(response => {
+        if (!response.ok) throw new Error('Hálózati hiba (Network error)');
         console.log('Siker (Success)!');
         alert('A táblázat sikeresen frissítve lett!');
-        button.innerText = originalText; // Reset button text
+        button.innerText = originalText;
+        
+        // Optional: reload the table to show fresh data
+        location.reload(); 
       })
       .catch(error => {
         console.error('Hiba (Error)!', error);
         alert('Hiba történt a mentés során.');
-        button.innerText = originalText; // Reset button text
+        button.innerText = originalText;
       });
     }
   </script>
