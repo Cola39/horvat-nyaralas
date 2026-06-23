@@ -50,17 +50,17 @@ function renderTable(data) {
     } else {
       const isEuro = !isNaN(parseFloat(value)) && parseFloat(value) < 1000;
       html += `<tr>
-                 <td>${label}</td>
-                 <td>
-                   <div class="input-group">
-                     <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
-                     <select class="currency-select" data-label="${label}" onchange="updateTotal()">
-                       <option value="Ft" ${!isEuro ? 'selected' : ''}>Ft</option>
-                       <option value="€" ${isEuro ? 'selected' : ''}>€</option>
-                     </select>
-                   </div>
-                 </td>
-               </tr>`;
+           <td>${label}</td>
+           <td>
+             <div class="input-group">
+               <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
+               <select class="currency-select" data-label="${label}" onchange="updateTotal()">
+                 <option value="Ft" ${!isEuro ? 'selected' : ''}>Ft</option>
+                 <option value="€" ${isEuro ? 'selected' : ''}>€</option>
+               </select>
+             </div>
+           </td>
+         </tr>`;
     }
   });
 
