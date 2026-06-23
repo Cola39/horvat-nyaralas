@@ -8,9 +8,17 @@ window.onload = function() {
   fetch(fetchURL)
     .then(response => response.json())
     .then(data => {
-      // data now contains both the rate and the rows from our new Code.gs
-      exchangeRate = data.exchangeRate || 400;
-      renderTable(data.rows);
+      // If we receive the NEW data package from Google
+      if (data && data.rows) {
+        exchangeRate = data.exchangeRate || 400;
+        renderTable(data.rows);
+      } 
+      // If we receive the OLD data format (just an array)
+      else if (Array.isArray(data)) {
+        console.warn("Még a régi adat érkezik a Google-től! (Still getting old data)");
+        exchangeRate = 400; // Fallback rate
+        renderTable(data);
+      }
     })
     .catch(error => {
       document.getElementById('tableContainer').innerHTML = "<p style='color:red; padding: 20px;'>Hiba a betöltéskor.</p>";
