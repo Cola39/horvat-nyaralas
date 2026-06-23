@@ -1,7 +1,7 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      max-width: 850px;
+      max-width: 450px;
       margin: auto;
       background-color: #f9f9f9;
     }
@@ -9,7 +9,7 @@
       background: white;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-radius: 8px;
-      overflow-x: auto;
+      overflow: hidden;
     }
 /* --- Header Styling --- */
 h2 {
@@ -122,4 +122,31 @@ select {
 
 .nav-menu a.active:hover {
   background-color: #0d5363;
+}
+
+
+/* --- Smart Table Auto-Adjust (Shopping List) --- */
+
+/* Prevent text from stacking on top of itself */
+#shoppingTable th, #shoppingTable td {
+  white-space: nowrap; 
+}
+
+/* Let the dropdown box resize itself based on the word inside it */
+#shoppingTable select {
+  width: auto;
+}
+
+/* Force the small columns to shrink-wrap tightly around their content */
+#shoppingTable th:nth-child(1), #shoppingTable td:nth-child(1), /* Táska */
+#shoppingTable th:nth-child(2), #shoppingTable td:nth-child(2), /* Kat */
+#shoppingTable th:nth-child(4), #shoppingTable td:nth-child(4), /* Db */
+#shoppingTable th:nth-child(5), #shoppingTable td:nth-child(5), /* Kosárban */
+#shoppingTable th:nth-child(6), #shoppingTable td:nth-child(6)  /* Delete Button */ {
+  width: 1%; 
+}
+
+/* Allow the "Tárgy" (Item Name) column to stretch and fill the remaining space */
+#shoppingTable th:nth-child(3), #shoppingTable td:nth-child(3) {
+  width: 100%;
 }
