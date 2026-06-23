@@ -28,11 +28,6 @@ function renderTable(data) {
     const label = row[0]; 
     let value = row[1];   
 
-    if (label === "" || label === "Per fő" || label === "Még fizetendő") return; 
-
-    // Replace the old block inside renderTable with this:
-
-// Handle "Összesen" and "Még fizetendő" specifically
     if (label === "Összesen") {
       html += `
         <tr class="total-row">
@@ -45,7 +40,6 @@ function renderTable(data) {
           </td>
         </tr>`;
     } else if (label === "Még fizetendő") {
-      // Reverted back to a standard row
       html += `
         <tr>
           <td>Még fizetendő</td>
@@ -90,7 +84,7 @@ function updateTotal() {
   });
 
   // Calculate Remaining (currently total, add paid amount logic here if needed)
-  let remaining = totalHuf; 
+  const remaining = getSheetValueByLabel(window.latestData, "Még fizetendő"); 
 
   // Update labels
   document.getElementById('totalSumLabel').innerText = Math.round(totalHuf).toLocaleString('hu-HU') + ' Ft';
