@@ -266,3 +266,30 @@ button:hover, .btn:hover {
     padding: 6px;
   }
 }
+
+
+/* Creates a narrower card perfectly sized for 2 columns */
+.narrow-card {
+  max-width: 600px;
+  margin: 0 auto; /* Centers the card on the screen */
+}
+
+/* --- Prettier Table Rows --- */
+/* Adds subtle alternating "zebra stripes" so rows are easy to read */
+tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+/* Highlights the row your mouse is currently hovering over */
+tbody tr:hover {
+  background-color: #f0f5fa;
+}
+
+/* Make the Total row pop! */
+.total-row td {
+  border-top: 3px solid #126e82;
+  font-weight: bold;
+  font-size: 18px;
+  color: #126e82;
+  background-color: #e8f0fe;
+}
