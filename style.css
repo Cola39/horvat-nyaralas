@@ -128,7 +128,10 @@ select {
   font-weight: bold;
 }
 
-button {
+/* =========================================
+   BUTTONS
+   ========================================= */
+button, .btn {
   background-color: #126e82;
   color: white;
   border: none;
@@ -137,10 +140,47 @@ button {
   width: 100%;
   font-size: 16px;
   font-weight: bold;
+  border-radius: 4px; /* Matches the nav buttons! */
+  transition: all 0.2s ease; /* Smooth hover animation */
 }
 
-button:hover {
+/* Hover effect with a tiny "lift" animation */
+button:hover, .btn:hover {
   background-color: #0d5363;
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Specific styling for the side-by-side shopping buttons */
+.btn {
+  width: auto;
+  padding: 12px 20px;
+}
+
+/* Secondary Buttons (Outlined to match inactive nav buttons) */
+.btn-secondary {
+  background-color: white;
+  color: #126e82;
+  border: 2px solid #126e82;
+}
+
+.btn-secondary:hover {
+  background-color: #e8f0fe;
+  color: #0d5363;
+}
+
+/* Keep the delete 'X' button from getting giant blue backgrounds */
+#shoppingTable button {
+  width: auto;
+  padding: 5px 10px;
+  background: none;
+  box-shadow: none;
+  transform: none;
+}
+
+#shoppingTable button:hover {
+  background-color: #ffe6e6; /* Light red hover */
+  border-radius: 4px;
 }
 
 /* =========================================
