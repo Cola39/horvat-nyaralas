@@ -19,7 +19,7 @@
 body {
   font-family: var(--font-base);
   padding: 20px;
-  max-width: 850px;
+  max-width: 950px; /* Slightly wider for tables */
   margin: auto;
   background-color: var(--bg-body);
 }
@@ -34,7 +34,7 @@ body {
   padding: 20px;
 }
 
-.narrow-card { max-width: 600px; margin: 0 auto; }
+.narrow-card { max-width: 800px; margin: 0 auto; }
 
 h2 {
   color: var(--primary);
@@ -84,6 +84,7 @@ td { padding: 12px 15px; border-bottom: 1px solid #eee; }
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
 
+/* Costs Table Specific */
 .total-row td {
   border-top: 3px solid var(--primary);
   font-weight: bold;
@@ -100,9 +101,20 @@ tbody tr:hover { background-color: var(--row-hover); }
 }
 .per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
+/* Shopping Table Specific */
+.shopping-table { table-layout: fixed; }
+.shopping-table th, .shopping-table td { padding: 8px; }
+.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 15%; }
+.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 10%; }
+.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 30%; }
+.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 12%; }
+.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 12%; text-align: center; }
+.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 8%; text-align: center; }
+
 /* =========================================
    5. FORMS & INPUTS
    ========================================= */
+/* Cost Table Input Group */
 .input-group {
   display: flex;
   flex-direction: row;
@@ -112,28 +124,26 @@ tbody tr:hover { background-color: var(--row-hover); }
 }
 
 input, select {
-  padding: 12px;
+  padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   font-family: inherit;
   background-color: #fafafa;
+  width: 100%;
 }
 
-.cost-input {
-  flex: 1;
-  width: auto;
-}
+.cost-input { flex: 1; }
+.currency-select { width: 70px; flex-shrink: 0; }
 
-.currency-select {
-  width: 70px;
-  flex-shrink: 0;
-}
-
+/* General Input Focus */
 input:focus, select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
 }
+
+/* Checkbox alignment */
+input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
 
 /* =========================================
    6. BUTTONS & UTILITIES
@@ -153,10 +163,19 @@ button, .btn {
 button:hover, .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
 .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
 
+.delete-btn {
+  color: #777;
+  background: transparent;
+  padding: 5px;
+  font-size: 18px;
+}
+.delete-btn:hover { color: var(--delete-red); }
+
 /* =========================================
    7. RESPONSIVENESS
    ========================================= */
 @media (max-width: 600px) {
   .nav-menu { flex-direction: column; }
   .action-buttons { flex-direction: column; }
+  .shopping-table { display: block; overflow-x: auto; }
 }
