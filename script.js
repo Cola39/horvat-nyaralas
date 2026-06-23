@@ -30,27 +30,29 @@ function renderTable(data) {
 
     if (label === "" || label === "Per fő" || label === "Még fizetendő") return; 
 
-    if (label === "Összesen") {
-      html += `
-        <tr class="total-row">
-          <td>Összesen</td>
-          <td>
-             <div style="display: flex; justify-content: space-between;">
-                <span id="totalSumLabel">0 Ft</span>
-                <span id="totalPerFoLabel" style="font-weight: normal; color: #555;">0 Ft/fő</span>
-             </div>
-          </td>
-        </tr>
-        <tr style="background-color: transparent;">
-          <td>Még fizetendő</td>
-          <td>
-             <div style="display: flex; justify-content: space-between;">
-                <span id="megFizetendoLabel">0 Ft</span>
-                <span id="megFizetendoPerFoLabel" style="font-weight: normal; color: #555;">0 Ft/fő</span>
-             </div>
-          </td>
-        </tr>`;
-    } else {
+    // Replace the old block inside renderTable with this:
+
+if (label === "Összesen") {
+  html += `
+    <tr class="total-row">
+      <td>Összesen</td>
+      <td>
+         <div style="display: flex; justify-content: space-between;">
+            <span id="totalSumLabel">0 Ft</span>
+            <span id="totalPerFoLabel" style="font-weight: normal; color: #555;">0 Ft/fő</span>
+         </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="color: #555;">Még fizetendő</td>
+      <td>
+         <div style="display: flex; justify-content: space-between; color: #555;">
+            <span id="megFizetendoLabel">0 Ft</span>
+            <span id="megFizetendoPerFoLabel" style="font-weight: normal; color: #555;">0 Ft/fő</span>
+         </div>
+      </td>
+    </tr>`;
+} else {
       let numValue = parseFloat(value);
       let defaultCurrency = (!isNaN(numValue) && numValue < 1000) ? '€' : 'Ft';
 
