@@ -1,93 +1,24 @@
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 450px;
-      margin: auto;
-      background-color: #f9f9f9;
-    }
-    .card {
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-/* --- Header Styling --- */
-h2 {
-  color: #126e82;
-  text-align: center;
-  margin-top: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #e8f0fe;
-  font-size: 24px;
+/* =========================================
+   GENERAL LAYOUT
+   ========================================= */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 850px; /* 🚨 FIXED: Was 450px. Now wide enough for the shopping list! */
+  margin: auto;
+  background-color: #f9f9f9;
 }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    /* Teal Header */
-    th {
-      background-color: #126e82; 
-      color: white;
-      padding: 15px;
-      font-size: 18px;
-    }
-    td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #eee;
-      vertical-align: middle;
-    }
-    /* Lock line styling for "Összesen" */
-    .total-row td {
-      border-top: 3px solid #126e82;
-      font-weight: bold;
-    }
-    /* Input box styling matching your image */
-    input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #4285f4;
-      background-color: #e8f0fe;
-      border-radius: 4px;
-      font-size: 15px;
-      box-sizing: border-box;
-    }
-    /* Read-only values alignment */
-    .static-value {
-      padding: 8px;
-      display: inline-block;
-    }
-    button {
-      background-color: #126e82;
-      color: white;
-      border: none;
-      padding: 15px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #0d5363;
-    }
-    /* New styles for the input + dropdown combo */
-.input-group {
-  display: flex;
-  gap: 8px;
-}
-select {
-  padding: 8px;
-  border: 1px solid #4285f4;
-  background-color: white;
-  border-radius: 4px;
-  font-size: 15px;
-  cursor: pointer;
-  color: #126e82;
-  font-weight: bold;
+.card {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-x: auto; /* 🚨 FIXED: Was 'hidden'. Now allows scrolling on mobile! */
 }
 
-/* --- Navigation Menu Styling --- */
+/* =========================================
+   NAVIGATION MENU
+   ========================================= */
 .nav-menu {
   display: flex;
   gap: 10px;
@@ -95,7 +26,7 @@ select {
   background: white;
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-menu a {
@@ -110,7 +41,6 @@ select {
   transition: all 0.2s ease;
 }
 
-/* This styles the button of the page you are currently on */
 .nav-menu a.active {
   background-color: #126e82;
   color: white;
@@ -124,29 +54,118 @@ select {
   background-color: #0d5363;
 }
 
-
-/* --- Smart Table Auto-Adjust (Shopping List) --- */
-
-/* Prevent text from stacking on top of itself */
-#shoppingTable th, #shoppingTable td {
-  white-space: nowrap; 
+/* =========================================
+   TYPOGRAPHY & HEADERS
+   ========================================= */
+h2 {
+  color: #126e82;
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e8f0fe;
+  font-size: 24px;
 }
 
-/* Let the dropdown box resize itself based on the word inside it */
+/* =========================================
+   TABLE STYLING
+   ========================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background-color: #126e82;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.total-row td {
+  border-top: 3px solid #126e82;
+  font-weight: bold;
+}
+
+.static-value {
+  padding: 8px;
+  display: inline-block;
+}
+
+/* =========================================
+   FORMS & INPUTS
+   ========================================= */
+input[type="text"], 
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #4285f4;
+  background-color: #e8f0fe;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid #4285f4;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #126e82;
+  font-weight: bold;
+}
+
+button {
+  background-color: #126e82;
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0d5363;
+}
+
+/* =========================================
+   SMART TABLE AUTO-ADJUST (Shopping List)
+   ========================================= */
+#shoppingTable th, 
+#shoppingTable td {
+  white-space: nowrap;
+}
+
 #shoppingTable select {
   width: auto;
 }
 
-/* Force the small columns to shrink-wrap tightly around their content */
-#shoppingTable th:nth-child(1), #shoppingTable td:nth-child(1), /* Táska */
-#shoppingTable th:nth-child(2), #shoppingTable td:nth-child(2), /* Kat */
-#shoppingTable th:nth-child(4), #shoppingTable td:nth-child(4), /* Db */
-#shoppingTable th:nth-child(5), #shoppingTable td:nth-child(5), /* Kosárban */
-#shoppingTable th:nth-child(6), #shoppingTable td:nth-child(6)  /* Delete Button */ {
-  width: 1%; 
+/* Force small columns to shrink-wrap */
+#shoppingTable th:nth-child(1), #shoppingTable td:nth-child(1),
+#shoppingTable th:nth-child(2), #shoppingTable td:nth-child(2),
+#shoppingTable th:nth-child(4), #shoppingTable td:nth-child(4),
+#shoppingTable th:nth-child(5), #shoppingTable td:nth-child(5),
+#shoppingTable th:nth-child(6), #shoppingTable td:nth-child(6) {
+  width: 1%;
 }
 
-/* Allow the "Tárgy" (Item Name) column to stretch and fill the remaining space */
-#shoppingTable th:nth-child(3), #shoppingTable td:nth-child(3) {
+/* Allow "Tárgy" column to stretch */
+#shoppingTable th:nth-child(3), 
+#shoppingTable td:nth-child(3) {
   width: 100%;
 }
