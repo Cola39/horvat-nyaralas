@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bevásárlólista</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto; background-color: #f9f9f9; }
+    .card { background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th { background-color: #f4b400; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px; border-bottom: 1px solid #ddd; }
+    input[type="text"], input[type="number"], select { width: 100%; padding: 6px; box-sizing: border-box; }
+    .btn { background-color: #f4b400; color: white; border: none; padding: 10px 15px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+    .btn:hover { background-color: #d49c00; }
+    .btn-secondary { background-color: #ddd; color: #333; margin-right: 10px; }
+    .done-row { opacity: 0.6; text-decoration: line-through; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Bevásárlólista</h2>
+    <div id="loading">Betöltés... (Loading...)</div>
+    
+    <table id="shoppingTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Táska</th>
+          <th style="width: 60px;">Kat</th>
+          <th>Tárgy</th>
+          <th style="width: 60px;">Db</th>
+          <th>Kosárban?</th>
+          <th></th> </tr>
+      </thead>
+      <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <div style="display: flex; justify-content: space-between;">
+      <button class="btn btn-secondary" onclick="addRow()">+ Új Tárgy (Add Item)</button>
+      <button class="btn" onclick="saveShoppingList()">Mentés (Save List)</button>
+    </div>
+  </div>
+
+  <script>
+    // 🚨 PASTE YOUR GOOGLE APPS SCRIPT URL HERE 🚨
+    const scriptURL = 'YOUR_WEB_APP_URL_HERE';
+    
+    // Notice we added ?type=shopping so the traffic cop routes it correctly!
+    const fetchURL = scriptURL + "?type=shopping";
+
+    let shoppingData = [];
+
+    window.onload = function() {
+      fetch(fetchURL)
+        .then(response => response.json())
+        .then(data => {
+          // Convert the 2D array from Google Sheets into an array of Objects
+          shoppingData = data.map(row => ({
+            taska: row[0] || "",
+            kat: row[1] || "",
+            targy: row[2] || "",
+            db: row[3] || "",
+            kosarban: row[4] === true || row[4] === "TRUE"
+          }));
+          
+          // Sort the array by category (kat)
+          shoppingData.sort((a, b) => a.kat - b.kat);
+          
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('shoppingTable').style.display = 'table';
+          renderTable();
+        });
+    };
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = "";
+
+      shoppingData.forEach((item, index) => {
+        // If it's checked, apply the 'done-row' class to grey it out visually
+        const isDoneClass = item.kosarban ? "done-row" : "";
+        
+        tbody.innerHTML += `
+          <tr class="${isDoneClass}">
+            <td>
+              <select onchange="updateData(${index}, 'taska', this.value)">
+                <option value="hűtőtáska" ${item.taska === 'hűtőtáska' ? 'selected' : ''}>hűtőtáska</option>
+                <option value="vászontáska" ${item.taska === 'vászontáska' ? 'selected' : ''}>vászontáska</option>
+              </select>
+            </td>
+            <td><input type="number" value="${item.kat}" oninput="updateData(${index}, 'kat', this.value)"></td>
+            <td><input type="text" value="${item.targy}" oninput="updateData(${index}, 'targy', this.value)"></td>
+            <td><input type="number" value="${item.db}" oninput="updateData(${index}, 'db', this.value)"></td>
+            <td style="text-align:center;">
+              <input type="checkbox" ${item.kosarban ? 'checked' : ''} onchange="toggleCheckbox(${index}, this.checked)">
+            </td>
+            <td><button onclick="deleteRow(${index})" style="color:red; cursor:pointer; border:none; background:none;">X</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    // Updates our internal array when you type in a box
+    function updateData(index, field, value) {
+      shoppingData[index][field] = value;
+    }
+
+    // Special function for checkboxes so we can re-render the visual grey-out effect immediately
+    function toggleCheckbox(index, isChecked) {
+      shoppingData[index].kosarban = isChecked;
+      renderTable(); 
+    }
+
+    // Adds a blank row to the bottom
+    function addRow() {
+      shoppingData.push({ taska: "hűtőtáska", kat: "1", targy: "", db: "1", kosarban: false });
+      renderTable();
+    }
+
+    // Removes a row from the array
+    function deleteRow(index) {
+      shoppingData.splice(index, 1);
+      renderTable();
+    }
+
+    function saveShoppingList() {
+      const button = document.querySelector('.btn');
+      const originalText = button.innerText;
+      button.innerText = 'Mentés... (Saving...)';
+
+      // We package the data up to send to our traffic cop script
+      const formData = new URLSearchParams();
+      formData.append("type", "shopping"); // Tell it where to go
+      formData.append("data", JSON.stringify(shoppingData)); // Attach the whole list
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: formData 
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Network error');
+        alert('Lista sikeresen frissítve!');
+        button.innerText = originalText;
+        
+        // Re-sort the data by category now that we saved it
+        shoppingData.sort((a, b) => a.kat - b.kat);
+        renderTable();
+      })
+      .catch(error => {
+        console.error('Error!', error);
+        alert('Hiba történt a mentés során.');
+        button.innerText = originalText;
+      });
+    }
+  </script>
+</body>
+</html>
