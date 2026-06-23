@@ -197,7 +197,7 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
   padding: 5px;
   font-size: 18px;
 }
-.delete-btn:hover { color: var(--delete-red); }
+.delete-btn:hover { background-color: var(--delete-red); }
 
 /* =========================================
    7. RESPONSIVENESS
