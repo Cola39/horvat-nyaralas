@@ -169,3 +169,8 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
   .action-buttons { flex-direction: column; }
   .btn { width: 100%; }
 }
+
+.done-row {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
