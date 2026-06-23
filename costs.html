@@ -3,35 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nyaralási költségek nyilvántartása">
   <title>Költségek</title>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>">
-  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="nav-menu">
+  <nav class="nav-menu">
     <a href="index.html">Kezdőlap</a>
     <a href="costs.html" class="active">Költségek</a>
     <a href="shopping.html">Bevásárlólista</a>
-  </div>
+  </nav>
 
-  <div class="card narrow-card">
-    
-    <div id="tableContainer">
-      <p style="padding: 20px; text-align: center;">
-        <em>Adatok betöltése...</em>
-      </p>
+  <main class="card narrow-card">
+    <div id="tableContainer" class="loading-state">
+      <em>Adatok betöltése...</em>
     </div>
     
-    <div style="padding: 20px; padding-top: 0;">
-      <button onclick="saveData()">Mentés</button>
+    <div class="action-buttons">
+      <button class="btn" onclick="saveData()">Mentés</button>
     </div>
-    
-  </div>
+  </main>
 
   <script src="script.js"></script>
-
 </body>
 </html>
