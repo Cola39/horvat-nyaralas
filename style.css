@@ -35,7 +35,7 @@ body {
   text-align: center;
 }
 
-.narrow-card { max-width: 800px; margin: 0 auto; }
+.narrow-card { max-width: 600px; margin: 0 auto; }
 
 h2 {
   color: var(--primary);
@@ -129,11 +129,6 @@ tbody tr:hover { background-color: var(--row-hover); }
 
 
 /* Costs Table Specific */
-#tableContainer table {
-  max-width: 600px; /* Adjust this value if you want it even thinner or slightly wider */
-  margin: 0 auto;   /* Keeps the table centered inside the card */
-}
-
 .total-row td {
   border-top: 3px solid var(--primary);
   font-weight: bold;
