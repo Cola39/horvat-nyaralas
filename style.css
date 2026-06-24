@@ -187,10 +187,15 @@ td.per-fo {
   table-layout: fixed; 
 }
 
-.shopping-table th { padding: 15px 8px; }
-.shopping-table th { padding: 0 8px; }
+/* Make the header tall and spacy to match the other tables */
+.shopping-table th { 
+  padding: 15px; 
+  word-wrap: break-word;
+}
 
-.shopping-table th, .shopping-table td { 
+/* Keep the data rows slightly more compact so the list doesn't take up too much vertical space */
+.shopping-table td { 
+  padding: 8px; 
   word-wrap: break-word;
 }
 
