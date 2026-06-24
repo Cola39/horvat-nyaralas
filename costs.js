@@ -28,20 +28,23 @@ window.onload = () => {
 
 function renderTable(data) {
   let html = `<table><thead><tr><th>Költségek</th><th>Összeg</th></tr></thead><tbody>`;
-
-  data.forEach(row => {
+  
+  data.forEach((row, index) => {
     const label = row[0];
     const value = row[1];
 
-    // Kihagyjuk a statikus összegző sorokat a bal oldali fő táblázatból
     if (!label || label === "Per fő" || label === "Még fizetendő" || label === "Összesen") return;
+
+    // A Google Sheet képleted alapján a B3, B5, B6, B7 sorok a "még fizetendő".
+    // A JS tömbben (mivel az A2 a 0. elem), ezek az 1, 3, 4, 5-ös indexek.
+    const isUnpaidRow = [1, 3, 4, 5].includes(index);
 
     const isEuro = !isNaN(parseFloat(value)) && parseFloat(value) < 1000;
     html += `<tr>
            <td>${label}</td>
            <td>
              <div class="input-group">
-               <input type="text" class="cost-input" data-label="${label}" value="${value}" oninput="autoCurrency(this); updateTotal();">
+               <input type="text" class="cost-input" data-label="${label}" data-unpaid="${isUnpaidRow}" value="${value}" oninput="autoCurrency(this); updateTotal();">
                <select class="currency-select" data-label="${label}" onchange="updateTotal()">
                  <option value="Ft" ${!isEuro ? 'selected' : ''}>Ft</option>
                  <option value="€" ${isEuro ? 'selected' : ''}>€</option>
@@ -57,20 +60,30 @@ function renderTable(data) {
 
 function updateTotal() {
   let totalHuf = 0;
+  let remainingHuf = -6500; // Új változó a még fizetendő összegnek
+
   document.querySelectorAll('.cost-input').forEach(input => {
     const val = parseFloat(input.value) || 0;
     const label = input.getAttribute('data-label');
+    const isUnpaid = input.getAttribute('data-unpaid') === 'true'; // Megnézzük, tartozik-e a listába
     const currency = document.querySelector(`.currency-select[data-label="${label}"]`).value;
-    totalHuf += (currency === '€') ? (val * exchangeRate) : val;
+    
+    // Átváltás Forintra (ha Euró)
+    const valueInHuf = (currency === '€') ? (val * exchangeRate) : val;
+    
+    totalHuf += valueInHuf;
+    
+    // Ha a sor a "még fizetendő" kategóriába tartozik, hozzáadjuk a második számlálóhoz is
+    if (isUnpaid) {
+      remainingHuf += valueInHuf;
+    }
   });
 
-  const baseRemaining = (latestData.find(r => r[0] === "Még fizetendő") || [0, 0])[1] || 0;
-
-  // Frissítjük a jobb oldali kártya értékeit
-  document.getElementById('totalSumLabel').innerText = `${Math.round(totalHuf).toLocaleString('hu-HU')} Ft`;
-  document.getElementById('totalPerFoLabel').innerText = `${Math.round(totalHuf / 2).toLocaleString('hu-HU')} Ft/fő`;
-  document.getElementById('megFizetendoLabel').innerText = `${Math.round(baseRemaining).toLocaleString('hu-HU')} Ft`;
-  document.getElementById('megFizetendoPerFoLabel').innerText = `${Math.round(baseRemaining / 2).toLocaleString('hu-HU')} Ft/fő`;
+  // Frissítjük a kártya összes értékét az új változókkal
+  document.getElementById('totalSumLabel').innerText = `${formatHuf(totalHuf)} Ft`;
+  document.getElementById('totalPerFoLabel').innerText = `${formatHuf(totalHuf / 2)} Ft/fő`;
+  document.getElementById('megFizetendoLabel').innerText = `${formatHuf(remainingHuf)} Ft`;
+  document.getElementById('megFizetendoPerFoLabel').innerText = `${formatHuf(remainingHuf / 2)} Ft/fő`;
 }
 
 function autoCurrency(el) {
