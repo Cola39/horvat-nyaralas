@@ -16,7 +16,7 @@ window.onload = () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-      document.getElementById('exchangeRateDisplay').innerText = `${exchangeRate} Ft = 1€`;
+      document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft = 1€`;
 
       renderTable(latestData);
     })
