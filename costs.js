@@ -15,7 +15,7 @@ window.onload = () => {
       const parsedRate = parseFloat(String(exchangeRate).replace(',', '.'));
       const formattedRate = !isNaN(parsedRate) ? parsedRate.toFixed(2).replace('.', ',') : exchangeRate;
       
-      document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft/€`;
+      document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft = 1€`;
       
       renderTable(latestData);
     })
