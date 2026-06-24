@@ -11,8 +11,12 @@ window.onload = () => {
       latestData = data.rows || data;
       exchangeRate = data.exchangeRate || 400;
 
-      // Megjelenítjük az aktuális árfolyamot a jobb oldali kártyán
-      document.getElementById('exchangeRateDisplay').innerText = `${exchangeRate} Ft/€`;
+      // Megjelenítjük az aktuális árfolyamot 2 tizedesjeggyel, magyar formátumban
+      const formattedRate = Number(exchangeRate).toLocaleString('hu-HU', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      document.getElementById('exchangeRateDisplay').innerText = `${exchangeRate} Ft = 1€`;
 
       renderTable(latestData);
     })
