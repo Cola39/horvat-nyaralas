@@ -94,8 +94,21 @@ h3 { font-size: 1.2rem; }
   transition: all 0.2s ease;
 }
 
-.nav-menu a.active { background-color: var(--primary); color: var(--bg-white); }
-.nav-menu a:hover { background-color: var(--bg-soft); }
+/* Általános (nem aktív) gombok hover effektje */
+.nav-menu a:hover { 
+  background-color: var(--bg-soft); 
+}
+
+/* Aktív gomb alapállapota */
+.nav-menu a.active { 
+  background-color: var(--primary); 
+  color: var(--bg-white); 
+}
+
+/* Aktív gomb hover effektje (Sötétebb kék) */
+.nav-menu a.active:hover { 
+  background-color: var(--primary-hover); 
+}
 
 /* =========================================
    4. TABLES
@@ -141,7 +154,6 @@ tbody tr:hover { background-color: var(--row-hover); }
   border-bottom: 2px solid var(--border-color);
   font-weight: bold;
   color: var(--primary);
-  background-color: var(--bg-soft);
 }
 
 .align-right {
@@ -154,10 +166,10 @@ tbody tr:hover { background-color: var(--row-hover); }
   color: #555; 
   font-size: 0.9em; 
 }
-  
+
 /* Shopping Table Specific */
 .shopping-table { 
-  min-width: 750px; /* Increased from 600px to make the table wider */
+  min-width: 800px;
   table-layout: fixed; 
 }
 
