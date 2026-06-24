@@ -13,8 +13,8 @@ window.onload = () => {
 
       // Megjelenítjük az aktuális árfolyamot 2 tizedesjeggyel, magyar formátumban
       const formattedRate = Number(exchangeRate).toLocaleString('hu-HU', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
       });
       document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft = 1€`;
 
