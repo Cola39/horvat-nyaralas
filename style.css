@@ -161,7 +161,7 @@ tbody tr:hover { background-color: var(--row-hover); }
   white-space: nowrap; /* Megakadályozza, hogy a Ft/fő két sorba törjön */
 }
 
-.per-fo { 
+td.per-fo { 
   font-weight: normal; 
   color: #555; 
   font-size: 0.9em; 
