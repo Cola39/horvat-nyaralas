@@ -144,14 +144,17 @@ tbody tr:hover { background-color: var(--row-hover); }
   background-color: var(--bg-soft);
 }
 
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
+.align-right {
+  text-align: right;
+  white-space: nowrap; /* Megakadályozza, hogy a Ft/fő két sorba törjön */
 }
-.per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
+.per-fo { 
+  font-weight: normal; 
+  color: #555; 
+  font-size: 0.9em; 
+}
+  
 /* Shopping Table Specific */
 .shopping-table { 
   min-width: 750px; /* Increased from 600px to make the table wider */
