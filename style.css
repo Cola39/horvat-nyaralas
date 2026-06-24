@@ -123,12 +123,17 @@ tbody tr:hover { background-color: var(--row-hover); }
 .shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 5%; text-align: center;  }  /* Kat */
 .shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 15%; } /* Kategória */
 .shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 33%; } /* Tárgy */
-.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; }  /* Db */
+.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; text-align: center; }  /* Db */
 .shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 10%; text-align: center; } /* Kosárban? */
 .shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; } /* Delete (Increased from 4%) */
 
 
 /* Costs Table Specific */
+#tableContainer table {
+  max-width: 600px; /* Adjust this value if you want it even thinner or slightly wider */
+  margin: 0 auto;   /* Keeps the table centered inside the card */
+}
+
 .total-row td {
   border-top: 3px solid var(--primary);
   font-weight: bold;
