@@ -3,7 +3,17 @@ const FETCH_URL = `${SCRIPT_URL}?type=shopping`;
 
 let shoppingData = [];
 
+// Oldal betöltésekor meghívjuk a letöltő függvényt
 window.onload = () => {
+  loadShoppingData();
+};
+
+// Külön függvénybe tettük az adatok lekérését, hogy bármikor újra tudjuk hívni
+function loadShoppingData() {
+  // Opcionális: Visszakapcsoljuk a töltőképernyőt, amíg frissít a háttérben
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('shoppingTable').style.display = 'none';
+
   fetch(FETCH_URL)
     .then(res => res.json())
     .then(data => {
@@ -17,11 +27,12 @@ window.onload = () => {
       }));
       
       sortAndRender();
+      // Visszakapcsoljuk a táblázatot
       document.getElementById('loading').style.display = 'none';
       document.getElementById('shoppingTable').style.display = 'table';
     })
     .catch(err => console.error('Fetch error:', err));
-};
+}
 
 function sortAndRender() {
   shoppingData.sort((a, b) => a.kat - b.kat);
@@ -76,7 +87,7 @@ function deleteRow(i) {
 function saveShoppingList() {
   const btn = document.querySelector('.btn');
   const originalText = btn.innerText;
-  btn.innerText = 'Mentés...';
+  btn.innerText = 'Mentés folyamatban...';
   btn.disabled = true;
 
   const formData = new URLSearchParams();
@@ -87,7 +98,9 @@ function saveShoppingList() {
     .then(res => {
       if (!res.ok) throw new Error();
       alert('Sikeres mentés!');
-      sortAndRender();
+      
+      // MENTÉS UTÁN: Újra lekérjük a szerverről a már frissített (kiszámolt 'kat' mezős) adatokat
+      loadShoppingData(); 
     })
     .catch(() => alert('Hiba történt!'))
     .finally(() => {
