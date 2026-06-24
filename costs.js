@@ -10,14 +10,13 @@ window.onload = () => {
     .then(data => {
       latestData = data.rows || data;
       exchangeRate = data.exchangeRate || 400;
-
-      // Megjelenítjük az aktuális árfolyamot 2 tizedesjeggyel, magyar formátumban
-      const formattedRate = Number(exchangeRate).toLocaleString('hu-HU', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-      document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft = 1€`;
-
+      
+      // Golyóálló árfolyam formázás: fixen 2 tizedesjegy, tizedesvesszővel
+      const parsedRate = parseFloat(String(exchangeRate).replace(',', '.'));
+      const formattedRate = !isNaN(parsedRate) ? parsedRate.toFixed(2).replace('.', ',') : exchangeRate;
+      
+      document.getElementById('exchangeRateDisplay').innerText = `${formattedRate} Ft/€`;
+      
       renderTable(latestData);
     })
     .catch(err => {
@@ -58,14 +57,19 @@ function renderTable(data) {
   updateTotal();
 }
 
+// EZ VOLT A HIÁNYZÓ FÜGGVÉNY: Segédfüggvény az ezres elválasztókhoz
+function formatHuf(amount) {
+  return Math.round(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
 function updateTotal() {
   let totalHuf = 0;
-  let remainingHuf = -6500; // Új változó a még fizetendő összegnek
+  let remainingHuf = 0;
 
   document.querySelectorAll('.cost-input').forEach(input => {
     const val = parseFloat(input.value) || 0;
     const label = input.getAttribute('data-label');
-    const isUnpaid = input.getAttribute('data-unpaid') === 'true'; // Megnézzük, tartozik-e a listába
+    const isUnpaid = input.getAttribute('data-unpaid') === 'true';
     const currency = document.querySelector(`.currency-select[data-label="${label}"]`).value;
     
     // Átváltás Forintra (ha Euró)
@@ -73,13 +77,12 @@ function updateTotal() {
     
     totalHuf += valueInHuf;
     
-    // Ha a sor a "még fizetendő" kategóriába tartozik, hozzáadjuk a második számlálóhoz is
+    // Ha a sor a "még fizetendő" kategóriába tartozik
     if (isUnpaid) {
       remainingHuf += valueInHuf;
     }
   });
 
-  // Frissítjük a kártya összes értékét az új változókkal
   document.getElementById('totalSumLabel').innerText = `${formatHuf(totalHuf)} Ft`;
   document.getElementById('totalPerFoLabel').innerText = `${formatHuf(totalHuf / 2)} Ft/fő`;
   document.getElementById('megFizetendoLabel').innerText = `${formatHuf(remainingHuf)} Ft`;
