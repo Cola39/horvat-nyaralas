@@ -64,7 +64,7 @@ function formatHuf(amount) {
 
 function updateTotal() {
   let totalHuf = 0;
-  let remainingHuf = 0;
+  let remainingHuf = -6500;
 
   document.querySelectorAll('.cost-input').forEach(input => {
     const val = parseFloat(input.value) || 0;
