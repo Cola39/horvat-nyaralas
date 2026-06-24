@@ -43,7 +43,7 @@ function renderTable() {
           <option value="vászontáska" ${item.taska === 'vászontáska' ? 'selected' : ''}>vászontáska</option>
         </select>
       </td>
-      <td><input type="number" value="${item.kat}" oninput="updateData(${index}, 'kat', this.value)"></td>
+      <td class="uneditable-cell">${item.kat}</td>
       <td><input type="text" value="${item.kategoria || ''}" oninput="updateData(${index}, 'kategoria', this.value)"></td>
       <td><input type="text" value="${item.targy}" oninput="updateData(${index}, 'targy', this.value)"></td>
       <td><input type="number" value="${item.db}" oninput="updateData(${index}, 'db', this.value)"></td>
