@@ -19,7 +19,7 @@
 body {
   font-family: var(--font-base);
   padding: 20px;
-  max-width: 950px;
+  max-width: 1000px;
   margin: auto;
   background-color: var(--bg-body);
 }
@@ -27,6 +27,19 @@ body {
 /* =========================================
    2. LAYOUT & CARDS
    ========================================= */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+   
 .card {
   background: var(--bg-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -37,13 +50,22 @@ body {
 
 .narrow-card { max-width: 600px; margin: 0 auto; }
 
-h2 {
+h2, h3 {
   color: var(--primary);
   text-align: center;
   margin-top: 0;
   padding-bottom: 15px;
   border-bottom: 2px solid var(--bg-soft);
-  font-size: 1.5rem;
+}
+
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+.exchange-rate-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+  padding: 10px 0;
 }
 
 /* =========================================
@@ -106,6 +128,29 @@ td {
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
 tbody tr:hover { background-color: var(--row-hover); }
+
+/* Összegzés Kártya Specifikus */
+.summary-card table {
+  margin-top: 10px;
+}
+.summary-card td {
+  padding: 15px 10px;
+}
+
+.total-row td {
+  border-bottom: 2px solid var(--border-color); /* Separator */
+  font-weight: bold;
+  color: var(--primary);
+  background-color: var(--bg-soft);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.per-fo { font-weight: normal; color: #555; font-size: 0.9em; }
 
 /* Shopping Table Specific */
 .shopping-table { 
@@ -205,7 +250,13 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
 /* =========================================
    7. RESPONSIVENESS
    ========================================= */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+   @media (max-width: 600px) {
   .nav-menu { flex-direction: column; }
   .action-buttons { flex-direction: column; }
 }
