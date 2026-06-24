@@ -120,18 +120,13 @@ tbody tr:hover { background-color: var(--row-hover); }
 
 /* Adjusted widths to total 100% and give the delete button more room */
 .shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 19%; } /* Táska */
-.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 8%; }  /* Kat */
+.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 5%; text-align: center;  }  /* Kat */
 .shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 15%; } /* Kategória */
 .shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 33%; } /* Tárgy */
 .shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; }  /* Db */
-.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 9%; text-align: center; } /* Kosárban? */
-.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 8%; text-align: center; } /* Delete (Increased from 4%) */
+.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 10%; text-align: center; } /* Kosárban? */
+.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; } /* Delete (Increased from 4%) */
 
-/* Styling for the uneditable basic text column */
-.shopping-table td:nth-child(2), 
-.uneditable-cell {
-  text-align: center;
-}
 
 /* Costs Table Specific */
 .total-row td {
