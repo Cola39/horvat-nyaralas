@@ -127,6 +127,16 @@ tbody tr:hover { background-color: var(--row-hover); }
 .shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 9%; text-align: center; } /* Kosárban? */
 .shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 8%; text-align: center; } /* Delete (Increased from 4%) */
 
+/* Styling for the uneditable basic text column */
+.shopping-table td:nth-child(2), 
+.uneditable-cell {
+  background-color: #f4f6f8; /* Very subtle gray/blue background */
+  color: #555;               /* Slightly muted text */
+  cursor: default;           /* Standard arrow cursor instead of text-select */
+  font-weight: bold;         /* Optional: makes the category ID stand out a bit */
+  user-select: none;         /* Optional: prevents double-clicking to highlight */
+}
+
 /* Costs Table Specific */
 .total-row td {
   border-top: 3px solid var(--primary);
