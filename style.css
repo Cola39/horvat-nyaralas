@@ -187,6 +187,8 @@ td.per-fo {
   table-layout: fixed; 
 }
 
+.shopping-table th { padding: 15px 0; }
+
 .shopping-table th, .shopping-table td { 
   word-wrap: break-word;
 }
