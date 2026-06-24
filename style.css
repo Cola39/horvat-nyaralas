@@ -123,8 +123,12 @@ h3 { font-size: 1.2rem; }
 
 table { 
   width: 100%; 
-  border-collapse: collapse; 
   text-align: left; 
+  /* Changes required for rounded table corners */
+  border-collapse: separate; 
+  border-spacing: 0;
+  border-radius: 4px; /* Matches your button radius */
+  overflow: hidden;   /* Clips header/row backgrounds to the rounded edge */
 }
 
 th { 
@@ -137,6 +141,11 @@ th {
 td { 
   padding: 12px 15px; 
   border-bottom: 1px solid #eee; 
+}
+
+/* Remove the bottom border on the very last row to keep the bottom corners clean */
+tbody tr:last-child td {
+  border-bottom: none;
 }
 
 tbody tr:nth-child(even) { background-color: var(--row-stripe); }
@@ -154,6 +163,11 @@ tbody tr:hover { background-color: var(--row-hover); }
   border-bottom: 2px solid var(--border-color);
   font-weight: bold;
   color: var(--primary);
+}
+
+/* Ensures the total row bottom border doesn't break the rounded corner */
+tbody tr:last-child.total-row td {
+  border-bottom: none; 
 }
 
 .align-right {
@@ -185,7 +199,7 @@ td.per-fo {
 .shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 33%; } /* Tárgy */
 .shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; text-align: center; }  /* Db */
 .shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 10%; text-align: center; } /* Kosárban? */
-.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; } /* Delete (Increased from 4%) */
+.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; } /* Delete */
 
 /* =========================================
    5. FORMS & INPUTS
