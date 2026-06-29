@@ -1,10 +1,17 @@
 async function fetchWeather() {
-    // Coordinates for Rovinj, Croatia
-    const url = 'https://api.open-meteo.com/v1/forecast?latitude=45.0812&longitude=13.6387&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto';
+    // Rovinj koordinátái, fixálva a nyaralás idejére (2026. júl. 3 - júl. 7)
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=45.0812&longitude=13.6387&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&start_date=2026-07-03&end_date=2026-07-07';
 
     try {
         const response = await fetch(url);
         const data = await response.json();
+
+        if (data.error) {
+            console.error("API Hiba:", data.reason);
+            document.getElementById('weather-body').innerHTML = '<tr><td colspan="4" class="center-text">Hiba: Nem sikerült lekérni a fix dátumokat.</td></tr>';
+            return;
+        }
+
         renderWeather(data.daily);
     } catch (error) {
         document.getElementById('weather-body').innerHTML = '<tr><td colspan="4" class="center-text">Hiba történt az adatok lekérésekor.</td></tr>';
@@ -13,14 +20,14 @@ async function fetchWeather() {
 }
 
 function getWeatherEmoji(code) {
-    // WMO Weather interpretation codes
-    if (code === 0) return '☀️'; // Clear
-    if (code === 1 || code === 2 || code === 3) return '⛅'; // Partly cloudy
-    if (code >= 45 && code <= 48) return '🌫️'; // Fog
-    if (code >= 51 && code <= 67) return '🌧️'; // Rain/Drizzle
-    if (code >= 71 && code <= 77) return '❄️'; // Snow (Unlikely in Rovinj summer, but just in case!)
-    if (code >= 80 && code <= 82) return '🌦️'; // Showers
-    if (code >= 95 && code <= 99) return '⛈️'; // Thunderstorm
+    // WMO Időjárási kódok fordítása emojira
+    if (code === 0) return '☀️'; // Tiszta
+    if (code === 1 || code === 2 || code === 3) return '⛅'; // Részben felhős
+    if (code >= 45 && code <= 48) return '🌫️'; // Köd
+    if (code >= 51 && code <= 67) return '🌧️'; // Eső/Szitálás
+    if (code >= 71 && code <= 77) return '❄️'; // Hó (Rovinjban ritka, de benne hagyjuk)
+    if (code >= 80 && code <= 82) return '🌦️'; // Zápor
+    if (code >= 95 && code <= 99) return '⛈️'; // Zivatar
     return '🌤️';
 }
 
@@ -28,13 +35,13 @@ function getDayName(dateString, index) {
     const days = ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'];
     const date = new Date(dateString);
     const dayName = days[date.getDay()];
-    // Formats exactly like your sheet: "1. nap (péntek)"
+    // Pontosan úgy formázza, ahogy a képeden is van: "1. nap (péntek)"
     return `${index + 1}. nap (${dayName})`;
 }
 
 function renderWeather(daily) {
     const tbody = document.getElementById('weather-body');
-    tbody.innerHTML = ''; // Clear the loading text
+    tbody.innerHTML = ''; // Töltés szöveg eltávolítása
 
     for (let i = 0; i < daily.time.length; i++) {
         const tr = document.createElement('tr');
@@ -68,5 +75,5 @@ function renderWeather(daily) {
     }
 }
 
-// Run the fetch when the page loads
+// Indítás az oldal betöltésekor
 document.addEventListener('DOMContentLoaded', fetchWeather);
