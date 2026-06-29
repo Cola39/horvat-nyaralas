@@ -78,10 +78,14 @@ h3 {
 .unified-card {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 40px;
+  gap: 20px 40px; /* 20px függőleges távolság (sorok), 40px vízszintes (oszlopok) */
   max-width: 900px;
   margin: 20px auto;
   align-items: start;
+}
+
+.card-header {
+  grid-column: 1 / -1; /* Átível a teljes rácson, mindkét oszlop felett */
 }
 
 .left-panel {
