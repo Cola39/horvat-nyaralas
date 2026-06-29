@@ -33,10 +33,15 @@ function getWeatherEmoji(code) {
 
 function getDayName(dateString, index) {
     const days = ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'];
+    const months = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+    
     const date = new Date(dateString);
     const dayName = days[date.getDay()];
-    // Pontosan úgy formázza, ahogy a képeden is van: "1. nap (péntek)"
-    return `${index + 1}. nap (${dayName})`;
+    const monthName = months[date.getMonth()];
+    const dayNumber = date.getDate();
+    
+    // Formázás: "1. nap (péntek - július 3.)"
+    return `${index + 1}. nap (${dayName} - ${monthName} ${dayNumber}.)`;
 }
 
 function renderWeather(daily) {
