@@ -417,7 +417,7 @@ button:hover,
 
   .unified-card {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 0px;
   }
 
   .left-panel {
