@@ -14,7 +14,9 @@
   --font-base: 'Arial', sans-serif;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: var(--font-base);
@@ -39,7 +41,7 @@ body {
   flex-direction: column;
   gap: 20px;
 }
-   
+
 .card {
   background: var(--bg-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -48,9 +50,13 @@ body {
   text-align: center;
 }
 
-.narrow-card { max-width: 600px; margin: 0 auto; }
+.narrow-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-h2, h3 {
+h2,
+h3 {
   color: var(--primary);
   text-align: center;
   margin-top: 0;
@@ -58,19 +64,39 @@ h2, h3 {
   border-bottom: 2px solid var(--bg-soft);
 }
 
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.2rem; }
+h2 {
+  font-size: 1.5rem;
+}
 
-.exchange-rate-display {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--primary);
-  padding: 10px 0;
+h3 {
+  font-size: 1.2rem;
 }
 
 /* =========================================
-   3. NAVIGATION MENU
+   3. UNIFIED DASHBOARD CARD
    ========================================= */
+.unified-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  max-width: 900px;
+  margin: 20px auto;
+  align-items: start;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel {
+  width: 100%;
+}
+
+/* =========================================
+   4. NAVIGATION & MENUS
+   ========================================= */
+/* Top Horizontal Menu (used on other pages) */
 .nav-menu {
   display: flex;
   flex-wrap: wrap;
@@ -94,53 +120,30 @@ h3 { font-size: 1.2rem; }
   transition: all 0.2s ease;
 }
 
-/* Általános (nem aktív) gombok hover effektje */
-.nav-menu a:hover { 
-  background-color: var(--bg-soft); 
+.nav-menu a:hover {
+  background-color: var(--bg-soft);
 }
 
-/* Aktív gomb alapállapota */
-.nav-menu a.active { 
-  background-color: var(--primary); 
-  color: var(--bg-white); 
+.nav-menu a.active {
+  background-color: var(--primary);
+  color: var(--bg-white);
 }
 
-/* Aktív gomb hover effektje (Sötétebb kék) */
-.nav-menu a.active:hover { 
-  background-color: var(--primary-hover); 
+.nav-menu a.active:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Vertical Menu (used on the unified index page) */
+.vertical-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 /* =========================================
-   8. WEATHER WIDGET SPECIFICS
+   5. TABLES
    ========================================= */
-.center-text {
-  text-align: center;
-}
-
-.weather-icon {
-  font-size: 1.5rem;
-}
-
-.temp-max {
-  font-weight: bold;
-  color: #d9534f; /* Warm red matching your delete button */
-}
-
-.temp-min {
-  color: var(--primary); /* Cool blue matching your theme */
-  font-size: 0.9em;
-}
-
-/* Optional: Slight width adjustments for the weather table */
-#weather-table th:nth-child(1), #weather-table td:nth-child(1) { width: 40%; }
-#weather-table th:nth-child(2), #weather-table td:nth-child(2) { width: 20%; }
-#weather-table th:nth-child(3), #weather-table td:nth-child(3) { width: 20%; }
-#weather-table th:nth-child(4), #weather-table td:nth-child(4) { width: 20%; }
-
-/* =========================================
-   4. TABLES
-   ========================================= */
-/* Container ensures the scroll bar appears if content is wider than screen */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
@@ -148,40 +151,44 @@ h3 { font-size: 1.2rem; }
   -webkit-overflow-scrolling: touch;
 }
 
-table { 
-  width: 100%; 
-  text-align: left; 
-  /* Changes required for rounded table corners */
-  border-collapse: separate; 
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: separate;
   border-spacing: 0;
-  border-radius: 4px; /* Matches your button radius */
-  overflow: hidden;   /* Clips header/row backgrounds to the rounded edge */
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-th { 
-  background-color: var(--primary); 
-  color: var(--bg-white); 
-  padding: 15px; 
-  white-space: nowrap; 
+th {
+  background-color: var(--primary);
+  color: var(--bg-white);
+  padding: 15px;
+  white-space: nowrap;
 }
 
-td { 
-  padding: 12px 15px; 
-  border-bottom: 1px solid #eee; 
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
 }
 
-/* Remove the bottom border on the very last row to keep the bottom corners clean */
 tbody tr:last-child td {
   border-bottom: none;
 }
 
-tbody tr:nth-child(even) { background-color: var(--row-stripe); }
-tbody tr:hover { background-color: var(--row-hover); }
+tbody tr:nth-child(even) {
+  background-color: var(--row-stripe);
+}
 
-/* Összegzés Kártya Specifikus */
+tbody tr:hover {
+  background-color: var(--row-hover);
+}
+
+/* Summary Card Specifics */
 .summary-card table {
   margin-top: 10px;
 }
+
 .summary-card td {
   padding: 15px 10px;
 }
@@ -192,51 +199,88 @@ tbody tr:hover { background-color: var(--row-hover); }
   color: var(--primary);
 }
 
-/* Ensures the total row bottom border doesn't break the rounded corner */
 tbody tr:last-child.total-row td {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
-.align-right {
-  text-align: right;
-  white-space: nowrap; /* Megakadályozza, hogy a Ft/fő két sorba törjön */
-}
-
-td.per-fo { 
-  font-weight: normal; 
-  color: #555; 
-  font-size: 0.9em; 
-}
-
-/* Shopping Table Specific */
-.shopping-table { 
+/* Shopping Table Specifics */
+.shopping-table {
   min-width: 800px;
-  table-layout: fixed; 
+  table-layout: fixed;
 }
 
-/* Make the header tall and spacy to match the other tables */
-.shopping-table th { 
-  padding: 15px; 
+.shopping-table th {
+  padding: 15px;
   word-wrap: break-word;
 }
 
-/* Keep the data rows slightly more compact so the list doesn't take up too much vertical space */
-.shopping-table td { 
-  padding: 8px; 
+.shopping-table td {
+  padding: 8px;
   word-wrap: break-word;
 }
 
-/* Adjusted widths to total 100% and give the delete button more room */
-.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 19%; } /* Táska */
-.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 5%; text-align: center;  }  /* Kat */
-.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 15%; } /* Kategória */
-.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 33%; } /* Tárgy */
-.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; text-align: center; }  /* Db */
-.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 10%; text-align: center; } /* Kosárban? */
-.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; } /* Delete */
+.shopping-table th:nth-child(1),
+.shopping-table td:nth-child(1) {
+  width: 19%;
+}
+
+.shopping-table th:nth-child(2),
+.shopping-table td:nth-child(2) {
+  width: 5%;
+  text-align: center;
+}
+
+.shopping-table th:nth-child(3),
+.shopping-table td:nth-child(3) {
+  width: 15%;
+}
+
+.shopping-table th:nth-child(4),
+.shopping-table td:nth-child(4) {
+  width: 33%;
+}
+
+.shopping-table th:nth-child(5),
+.shopping-table td:nth-child(5) {
+  width: 8%;
+  text-align: center;
+}
+
+.shopping-table th:nth-child(6),
+.shopping-table td:nth-child(6) {
+  width: 10%;
+  text-align: center;
+}
+
+.shopping-table th:nth-child(7),
+.shopping-table td:nth-child(7) {
+  width: 10%;
+  text-align: center;
+}
+
+/* Weather Table Specifics */
+#weather-table th:nth-child(1),
+#weather-table td:nth-child(1) {
+  width: 50%;
+}
+
+#weather-table th:nth-child(2),
+#weather-table td:nth-child(2) {
+  width: 15%;
+}
+
+#weather-table th:nth-child(3),
+#weather-table td:nth-child(3) {
+  width: 17.5%;
+}
+
+#weather-table th:nth-child(4),
+#weather-table td:nth-child(4) {
+  width: 17.5%;
+}
 
 /* =========================================
-   5. FORMS & INPUTS
+   6. FORMS & INPUTS
    ========================================= */
 .input-group {
   display: flex;
@@ -246,7 +290,8 @@ td.per-fo {
   width: 100%;
 }
 
-input, select {
+input,
+select {
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -255,21 +300,74 @@ input, select {
   width: 100%;
 }
 
-.cost-input { flex: 1; }
-.currency-select { width: 70px; flex-shrink: 0; }
+.cost-input {
+  flex: 1;
+}
 
-input:focus, select:focus {
+.currency-select {
+  width: 70px;
+  flex-shrink: 0;
+}
+
+input:focus,
+select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(18, 110, 130, 0.2);
 }
 
-input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
 
 /* =========================================
-   6. BUTTONS & UTILITIES
+   7. UTILITIES & TYPOGRAPHY
    ========================================= */
-button, .btn {
+.center-text {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.exchange-rate-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+  padding: 10px 0;
+}
+
+td.per-fo {
+  font-weight: normal;
+  color: #555;
+  font-size: 0.9em;
+}
+
+/* Weather Typographics */
+.weather-icon {
+  font-size: 1.5rem;
+}
+
+.temp-max {
+  font-weight: bold;
+  color: var(--delete-red);
+}
+
+.temp-min {
+  color: var(--primary);
+  font-size: 0.9em;
+}
+
+/* =========================================
+   8. BUTTONS
+   ========================================= */
+button,
+.btn {
   background-color: var(--primary);
   color: var(--bg-white);
   border: none;
@@ -281,8 +379,17 @@ button, .btn {
   transition: all 0.2s ease;
 }
 
-button:hover, .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
-.action-buttons { display: flex; gap: 15px; margin-top: 20px; }
+button:hover,
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
 
 .delete-btn {
   color: #777;
@@ -290,18 +397,35 @@ button:hover, .btn:hover { background-color: var(--primary-hover); transform: tr
   padding: 5px;
   font-size: 18px;
 }
-.delete-btn:hover { background-color: var(--delete-red); }
+
+.delete-btn:hover {
+  background-color: var(--delete-red);
+  color: var(--bg-white);
+}
 
 /* =========================================
-   7. RESPONSIVENESS
+   9. RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
   .dashboard-layout {
     grid-template-columns: 1fr;
   }
+
+  .unified-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .left-panel {
+    border-bottom: 2px solid var(--bg-soft);
+    padding-bottom: 20px;
+  }
 }
 
-   @media (max-width: 600px) {
-  .nav-menu { flex-direction: column; }
-  .action-buttons { flex-direction: column; }
+@media (max-width: 600px) {
+
+  .nav-menu,
+  .action-buttons {
+    flex-direction: column;
+  }
 }
