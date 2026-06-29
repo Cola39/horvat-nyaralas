@@ -95,6 +95,7 @@ h3 {
 
 .right-panel {
   width: 100%;
+  min-width: 0;
 }
 
 /* =========================================
@@ -417,11 +418,19 @@ button:hover,
 
   .unified-card {
     grid-template-columns: 1fr;
+    padding: 15px;
   }
 
   .left-panel {
     border-bottom: 2px solid var(--bg-soft);
     padding-bottom: 20px;
+  }
+
+/* Make the weather table texts slightly smaller on mobile */
+  #weather-table th, 
+  #weather-table td {
+    padding: 10px 5px; /* Reduce horizontal padding */
+    font-size: 0.9rem; /* Slightly smaller text */
   }
 }
 
@@ -430,5 +439,12 @@ button:hover,
   .nav-menu,
   .action-buttons {
     flex-direction: column;
+  }
+
+  /* Ensure buttons don't stretch beyond the card padding */
+  .vertical-menu .btn {
+      width: 100%; 
+      max-width: 100%;
+      box-sizing: border-box; /* Ensures padding is included in width */
   }
 }
