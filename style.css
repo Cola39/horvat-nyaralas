@@ -111,6 +111,33 @@ h3 { font-size: 1.2rem; }
 }
 
 /* =========================================
+   8. WEATHER WIDGET SPECIFICS
+   ========================================= */
+.center-text {
+  text-align: center;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+}
+
+.temp-max {
+  font-weight: bold;
+  color: #d9534f; /* Warm red matching your delete button */
+}
+
+.temp-min {
+  color: var(--primary); /* Cool blue matching your theme */
+  font-size: 0.9em;
+}
+
+/* Optional: Slight width adjustments for the weather table */
+#weather-table th:nth-child(1), #weather-table td:nth-child(1) { width: 40%; }
+#weather-table th:nth-child(2), #weather-table td:nth-child(2) { width: 20%; }
+#weather-table th:nth-child(3), #weather-table td:nth-child(3) { width: 20%; }
+#weather-table th:nth-child(4), #weather-table td:nth-child(4) { width: 20%; }
+
+/* =========================================
    4. TABLES
    ========================================= */
 /* Container ensures the scroll bar appears if content is wider than screen */
