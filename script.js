@@ -41,7 +41,7 @@ function getDayName(dateString, index) {
     const dayNumber = date.getDate();
     
     // Formázás: "1. nap (péntek - július 3.)"
-    return `${index + 1}. nap (${dayName} - ${monthName} ${dayNumber}.)`;
+    return `${index + 1}. nap: ${dayName}, ${monthName} ${dayNumber}.)`;
 }
 
 function renderWeather(daily) {
