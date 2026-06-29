@@ -78,7 +78,7 @@ h3 {
 .unified-card {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 20px 40px; /* 20px függőleges távolság (sorok), 40px vízszintes (oszlopok) */
+  gap: 0px 30px;
   max-width: 900px;
   margin: 20px auto;
   align-items: start;
@@ -417,7 +417,6 @@ button:hover,
 
   .unified-card {
     grid-template-columns: 1fr;
-    gap: 0px;
   }
 
   .left-panel {
