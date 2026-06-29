@@ -54,7 +54,6 @@ function renderWeather(daily) {
         // Nap (Day)
         const tdDay = document.createElement('td');
         tdDay.textContent = getDayName(daily.time[i], i);
-        tdDay.style.fontWeight = 'bold';
 
         // Időjárás (Weather Icon)
         const tdIcon = document.createElement('td');
