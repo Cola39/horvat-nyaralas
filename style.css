@@ -292,12 +292,12 @@ tbody tr:last-child.total-row td {
 
 .csenger-table th:nth-child(3),
 .csenger-table td:nth-child(3) {
-  width: 35%;
+  width: 32%;
 }
 
 .csenger-table th:nth-child(4),
 .csenger-table td:nth-child(4) {
-  width: 5%;
+  width: 8%;
 }
 
 .csenger-table th:nth-child(5),
