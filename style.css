@@ -284,6 +284,15 @@ tbody tr:last-child.total-row td {
   box-sizing: border-box;
 }
 
+.csenger-table td:nth-child(2) input,
+.csenger-table td:nth-child(4) input {
+  width: 55px;          /* Fix, kicsi szélesség */
+  min-width: 0;         /* Felülírjuk az előző 70px-es minimumot */
+  text-align: center;   /* Középre igazítjuk a számokat a jobb olvashatóságért */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .csenger-table th:nth-last-child(1),
 .csenger-table td:nth-last-child(1),
 .csenger-table th:nth-last-child(2),
