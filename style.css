@@ -101,7 +101,6 @@ h3 {
 /* =========================================
    4. NAVIGATION & MENUS
    ========================================= */
-/* Top Horizontal Menu (used on other pages) */
 .nav-menu {
   display: flex;
   flex-wrap: wrap;
@@ -138,7 +137,6 @@ h3 {
   background-color: var(--primary-hover);
 }
 
-/* Vertical Menu (used on the unified index page) */
 .vertical-menu {
   display: flex;
   flex-direction: column;
@@ -147,7 +145,7 @@ h3 {
 }
 
 /* =========================================
-   5. TABLES
+   5. TABLES (BASE STYLES)
    ========================================= */
 .table-responsive {
   width: 100%;
@@ -208,7 +206,9 @@ tbody tr:last-child.total-row td {
   border-bottom: none;
 }
 
-/* Shopping Table Specifics */
+/* =========================================
+   6. SHOPPING TABLE
+   ========================================= */
 .shopping-table {
   min-width: 800px;
   table-layout: fixed;
@@ -224,50 +224,20 @@ tbody tr:last-child.total-row td {
   word-wrap: break-word;
 }
 
-.shopping-table th:nth-child(1),
-.shopping-table td:nth-child(1) {
-  width: 19%;
-}
+.shopping-table th:nth-child(1), .shopping-table td:nth-child(1) { width: 19%; }
+.shopping-table th:nth-child(2), .shopping-table td:nth-child(2) { width: 5%; text-align: center; }
+.shopping-table th:nth-child(3), .shopping-table td:nth-child(3) { width: 15%; }
+.shopping-table th:nth-child(4), .shopping-table td:nth-child(4) { width: 33%; }
+.shopping-table th:nth-child(5), .shopping-table td:nth-child(5) { width: 8%; text-align: center; }
+.shopping-table th:nth-child(6), .shopping-table td:nth-child(6) { width: 10%; text-align: center; }
+.shopping-table th:nth-child(7), .shopping-table td:nth-child(7) { width: 10%; text-align: center; }
 
-.shopping-table th:nth-child(2),
-.shopping-table td:nth-child(2) {
-  width: 5%;
-  text-align: center;
-}
-
-.shopping-table th:nth-child(3),
-.shopping-table td:nth-child(3) {
-  width: 15%;
-}
-
-.shopping-table th:nth-child(4),
-.shopping-table td:nth-child(4) {
-  width: 33%;
-}
-
-.shopping-table th:nth-child(5),
-.shopping-table td:nth-child(5) {
-  width: 8%;
-  text-align: center;
-}
-
-.shopping-table th:nth-child(6),
-.shopping-table td:nth-child(6) {
-  width: 10%;
-  text-align: center;
-}
-
-.shopping-table th:nth-child(7),
-.shopping-table td:nth-child(7) {
-  width: 10%;
-  text-align: center;
-}
-
-/* Csenger Table Specifics */
+/* =========================================
+   7. CSENGER TABLE (FLUID AUTO-LAYOUT)
+   ========================================= */
 .csenger-table {
   width: 100%;
-  min-width: 800px; /* Keeps your horizontal scroll wrapper working on mobile */
-  /* We removed table-layout: fixed; so the browser can auto-size columns */
+  min-width: 800px;
 }
 
 .csenger-table th,
@@ -276,57 +246,64 @@ tbody tr:last-child.total-row td {
   vertical-align: middle;
 }
 
+/* Alapbeállítás az inputoknak, hogy kitöltsék a cellát */
 .csenger-table input[type="text"],
 .csenger-table input[type="number"],
 .csenger-table select {
   width: 100%;
-  min-width: 70px; /* Prevents the "Kat" and "Db" inputs from imploding */
+  min-width: 70px;
   box-sizing: border-box;
 }
 
+/* A "Kat" (2.) és "Db" (4.) oszlopok és celláik összehúzása */
+.csenger-table th:nth-child(2),
+.csenger-table td:nth-child(2),
+.csenger-table th:nth-child(4),
+.csenger-table td:nth-child(4) {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* A konkrét beviteli mezők rögzítése a "Kat" és "Db" oszlopokban */
 .csenger-table td:nth-child(2) input,
 .csenger-table td:nth-child(4) input {
-  width: 55px;          /* Fix, kicsi szélesség */
-  min-width: 0;         /* Felülírjuk az előző 70px-es minimumot */
-  text-align: center;   /* Középre igazítjuk a számokat a jobb olvashatóságért */
+  width: 55px;
+  min-width: 0;
+  text-align: center;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-.csenger-table th:nth-last-child(1),
-.csenger-table td:nth-last-child(1),
-.csenger-table th:nth-last-child(2),
-.csenger-table td:nth-last-child(2),
-.csenger-table th:nth-last-child(3),
-.csenger-table td:nth-last-child(3) {
-  width: 1%; /* A CSS trick that forces the column to shrink to exactly fit the checkboxes/buttons */
+/* A "Tárgy" (3.) oszlop falánk (greedy), megeszi a maradék helyet */
+.csenger-table th:nth-child(3),
+.csenger-table td:nth-child(3) {
+  width: 100%; 
+}
+
+/* A "Táska" (1.) oszlop biztosítása, hogy ne nyomódjon össze */
+.csenger-table th:nth-child(1),
+.csenger-table td:nth-child(1) {
+  width: 180px; 
+}
+
+/* Az utolsó 3 oszlop (bepakolva, reggel, kuka) automatikus zsugorítása */
+.csenger-table th:nth-last-child(-n+3),
+.csenger-table td:nth-last-child(-n+3) {
+  width: 1%;
   white-space: nowrap;
   text-align: center;
 }
 
-/* Weather Table Specifics */
-#weather-table th:nth-child(1),
-#weather-table td:nth-child(1) {
-  width: 50%;
-}
-
-#weather-table th:nth-child(2),
-#weather-table td:nth-child(2) {
-  width: 15%;
-}
-
-#weather-table th:nth-child(3),
-#weather-table td:nth-child(3) {
-  width: 17.5%;
-}
-
-#weather-table th:nth-child(4),
-#weather-table td:nth-child(4) {
-  width: 17.5%;
-}
+/* =========================================
+   8. WEATHER TABLE
+   ========================================= */
+#weather-table th:nth-child(1), #weather-table td:nth-child(1) { width: 50%; }
+#weather-table th:nth-child(2), #weather-table td:nth-child(2) { width: 15%; }
+#weather-table th:nth-child(3), #weather-table td:nth-child(3) { width: 17.5%; }
+#weather-table th:nth-child(4), #weather-table td:nth-child(4) { width: 17.5%; }
 
 /* =========================================
-   6. FORMS & INPUTS
+   9. FORMS & INPUTS
    ========================================= */
 .input-group {
   display: flex;
@@ -370,7 +347,7 @@ input[type="checkbox"] {
 }
 
 /* =========================================
-   7. UTILITIES & TYPOGRAPHY
+   10. UTILITIES & TYPOGRAPHY
    ========================================= */
 .center-text {
   text-align: center;
@@ -410,7 +387,7 @@ td.per-fo {
 }
 
 /* =========================================
-   8. BUTTONS
+   11. BUTTONS
    ========================================= */
 button,
 .btn {
@@ -450,7 +427,7 @@ button:hover,
 }
 
 /* =========================================
-   9. RESPONSIVENESS
+   12. RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
   .dashboard-layout {
@@ -467,25 +444,23 @@ button:hover,
     padding-bottom: 20px;
   }
 
-/* Make the weather table texts slightly smaller on mobile */
+  /* Weather table text resizer */
   #weather-table th, 
   #weather-table td {
-    padding: 10px 5px; /* Reduce horizontal padding */
-    font-size: 0.9rem; /* Slightly smaller text */
+    padding: 10px 5px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 600px) {
-
   .nav-menu,
   .action-buttons {
     flex-direction: column;
   }
 
-  /* Ensure buttons don't stretch beyond the card padding */
   .vertical-menu .btn {
       width: 100%; 
       max-width: 100%;
-      box-sizing: border-box; /* Ensures padding is included in width */
+      box-sizing: border-box;
   }
 }
