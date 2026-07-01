@@ -265,56 +265,33 @@ tbody tr:last-child.total-row td {
 
 /* Csenger Table Specifics */
 .csenger-table {
-  min-width: 800px;
-  table-layout: fixed;
+  width: 100%;
+  min-width: 800px; /* Keeps your horizontal scroll wrapper working on mobile */
+  /* We removed table-layout: fixed; so the browser can auto-size columns */
 }
 
-.csenger-table th {
-  padding: 15px;
-  word-wrap: break-word;
-}
-
+.csenger-table th,
 .csenger-table td {
   padding: 8px;
-  word-wrap: break-word;
+  vertical-align: middle;
 }
 
-.csenger-table th:nth-child(1),
-.csenger-table td:nth-child(1) {
-  width: 20%;
+.csenger-table input[type="text"],
+.csenger-table input[type="number"],
+.csenger-table select {
+  width: 100%;
+  min-width: 70px; /* Prevents the "Kat" and "Db" inputs from imploding */
+  box-sizing: border-box;
 }
 
-.csenger-table th:nth-child(2),
-.csenger-table td:nth-child(2) {
-  width: 5%;
-  text-align: center;
-}
-
-.csenger-table th:nth-child(3),
-.csenger-table td:nth-child(3) {
-  width: 32%;
-}
-
-.csenger-table th:nth-child(4),
-.csenger-table td:nth-child(4) {
-  width: 8%;
-}
-
-.csenger-table th:nth-child(5),
-.csenger-table td:nth-child(5) {
-  width: 15%;
-  text-align: center;
-}
-
-.csenger-table th:nth-child(6),
-.csenger-table td:nth-child(6) {
-  width: 10%;
-  text-align: center;
-}
-
-.csenger-table th:nth-child(7),
-.csenger-table td:nth-child(7) {
-  width: 10%;
+.csenger-table th:nth-last-child(1),
+.csenger-table td:nth-last-child(1),
+.csenger-table th:nth-last-child(2),
+.csenger-table td:nth-last-child(2),
+.csenger-table th:nth-last-child(3),
+.csenger-table td:nth-last-child(3) {
+  width: 1%; /* A CSS trick that forces the column to shrink to exactly fit the checkboxes/buttons */
+  white-space: nowrap;
   text-align: center;
 }
 
