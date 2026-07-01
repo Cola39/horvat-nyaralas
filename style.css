@@ -240,13 +240,16 @@ tbody tr:last-child.total-row td {
   min-width: 800px;
 }
 
-.csenger-table th,
+.csenger-table th {
+  padding: 15px;
+  vertical-align: middle;
+}
+
 .csenger-table td {
   padding: 8px;
   vertical-align: middle;
 }
 
-/* Alapbeállítás az inputoknak, hogy kitöltsék a cellát */
 .csenger-table input[type="text"],
 .csenger-table input[type="number"],
 .csenger-table select {
@@ -255,7 +258,6 @@ tbody tr:last-child.total-row td {
   box-sizing: border-box;
 }
 
-/* A "Kat" (2.) és "Db" (4.) oszlopok és celláik összehúzása */
 .csenger-table th:nth-child(2),
 .csenger-table td:nth-child(2),
 .csenger-table th:nth-child(4),
@@ -264,7 +266,6 @@ tbody tr:last-child.total-row td {
   white-space: nowrap;
 }
 
-/* A konkrét beviteli mezők rögzítése a "Kat" és "Db" oszlopokban */
 .csenger-table td:nth-child(2) input,
 .csenger-table td:nth-child(4) input {
   width: 55px;
@@ -274,26 +275,22 @@ tbody tr:last-child.total-row td {
   padding-right: 5px;
 }
 
-/* A "Tárgy" (3.) oszlop falánk (greedy), megeszi a maradék helyet */
 .csenger-table th:nth-child(3),
 .csenger-table td:nth-child(3) {
   width: 100%; 
 }
 
-/* A "Táska" (1.) oszlop biztosítása, hogy ne nyomódjon össze */
 .csenger-table th:nth-child(1),
 .csenger-table td:nth-child(1) {
-  width: 180px; 
+  width: 220px; 
 }
 
-/* Az utolsó 3 oszlop (bepakolva, reggel, kuka) automatikus zsugorítása */
 .csenger-table th:nth-last-child(-n+3),
 .csenger-table td:nth-last-child(-n+3) {
   width: 1%;
   white-space: nowrap;
   text-align: center;
 }
-
 /* =========================================
    8. WEATHER TABLE
    ========================================= */
