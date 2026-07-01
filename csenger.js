@@ -20,8 +20,8 @@ function loadCsengerData() {
       csengerData = data.map(row => ({
           taska: row[0] || "bőrönd",
           kat: row[1] || "1",
-          targy: row[3] || "",
-          db: row[4] || "1",
+          targy: row[2] || "",
+          db: row[3] || "1",
           kosarban: String(row[5]).toUpperCase() === "TRUE",
           reggel: String(row[6]).toUpperCase() === "TRUE"
       }));
