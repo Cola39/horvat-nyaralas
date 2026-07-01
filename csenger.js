@@ -19,7 +19,7 @@ function loadCsengerData() {
     .then(data => {
       csengerData = data.map(row => ({
           taska: row[0] || "bőrönd",
-          kat: row[1] || "1",
+          kat: row[1] || "",
           targy: row[2] || "",
           db: row[3] || "1",
           kosarban: String(row[5]).toUpperCase() === "TRUE",
@@ -78,7 +78,7 @@ function toggleCheckbox(i, isChecked) {
 }
 
 function addRow() {
-  csengerData.push({ taska: "bőrönd", kat: "5", targy: "egyéb", db: "1", bepakolva: false, reggel: false });
+  csengerData.push({ taska: "bőrönd", kat: "5", targy: "egyéb", db: "", bepakolva: false, reggel: false });
   sortAndRender();
 }
 
