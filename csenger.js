@@ -21,9 +21,9 @@ function loadCsengerData() {
           taska: row[0] || "bőrönd",
           kat: row[1] || "",
           targy: row[2] || "",
-          db: row[3] || "1",
-          kosarban: String(row[5]).toUpperCase() === "TRUE",
-          reggel: String(row[6]).toUpperCase() === "TRUE"
+          db: row[3] || "",
+          kosarban: String(row[4]).toUpperCase() === "TRUE",
+          reggel: String(row[5]).toUpperCase() === "TRUE"
       }));
       
       sortAndRender();
@@ -59,10 +59,10 @@ function renderTable() {
       <td><input type="text" value="${item.targy}" oninput="updateData(${index}, 'targy', this.value)"></td>
       <td><input type="number" value="${item.db}" oninput="updateData(${index}, 'db', this.value)"></td>
       <td style="text-align:center;">
-        <input type="checkbox" ${item.bepakolva ? 'checked' : ''} onchange="toggleCheckbox(${index}, this.checked)">
+        <input type="checkbox" ${item.bepakolva ? 'checked' : ''} onchange="toggleCheckbox(${index}, 'bepakolva', this.checked)">
       </td>
       <td style="text-align:center;">
-        <input type="checkbox" ${item.reggel ? 'checked' : ''} onchange="toggleCheckbox(${index}, this.checked)">
+        <input type="checkbox" ${item.reggel ? 'checked' : ''} onchange="toggleCheckbox(${index}, 'reggel', this.checked)">
       </td>
       <td><button class="delete-btn" onclick="deleteRow(${index})">🗑️</button></td>
     `;
@@ -72,8 +72,8 @@ function renderTable() {
 
 function updateData(i, field, val) { csengerData[i][field] = val; }
 
-function toggleCheckbox(i, isChecked) {
-  csengerData[i].bepakolva = isChecked;
+function toggleCheckbox(i, field, isChecked) {
+  csengerData[i][field] = isChecked;
   renderTable();
 }
 

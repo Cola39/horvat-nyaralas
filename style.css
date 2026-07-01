@@ -281,7 +281,7 @@ tbody tr:last-child.total-row td {
 
 .csenger-table th:nth-child(1),
 .csenger-table td:nth-child(1) {
-  width: 21%;
+  width: 20%;
 }
 
 .csenger-table th:nth-child(2),
@@ -292,17 +292,17 @@ tbody tr:last-child.total-row td {
 
 .csenger-table th:nth-child(3),
 .csenger-table td:nth-child(3) {
-  width: 36%;
+  width: 35%;
 }
 
 .csenger-table th:nth-child(4),
 .csenger-table td:nth-child(4) {
-  width: 8%;
+  width: 5%;
 }
 
 .csenger-table th:nth-child(5),
 .csenger-table td:nth-child(5) {
-  width: 10%;
+  width: 15%;
   text-align: center;
 }
 
