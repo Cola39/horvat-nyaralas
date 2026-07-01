@@ -263,6 +263,61 @@ tbody tr:last-child.total-row td {
   text-align: center;
 }
 
+/* Csenger Table Specifics */
+.csenger-table {
+  min-width: 800px;
+  table-layout: fixed;
+}
+
+.csenger-table th {
+  padding: 15px;
+  word-wrap: break-word;
+}
+
+.csenger-table td {
+  padding: 8px;
+  word-wrap: break-word;
+}
+
+.csenger-table th:nth-child(1),
+.csenger-table td:nth-child(1) {
+  width: 21%;
+}
+
+.csenger-table th:nth-child(2),
+.csenger-table td:nth-child(2) {
+  width: 5%;
+  text-align: center;
+}
+
+.csenger-table th:nth-child(3),
+.csenger-table td:nth-child(3) {
+  width: 36%;
+}
+
+.csenger-table th:nth-child(4),
+.csenger-table td:nth-child(4) {
+  width: 8%;
+}
+
+.csenger-table th:nth-child(5),
+.csenger-table td:nth-child(5) {
+  width: 10%;
+  text-align: center;
+}
+
+.csenger-table th:nth-child(6),
+.csenger-table td:nth-child(6) {
+  width: 10%;
+  text-align: center;
+}
+
+.csenger-table th:nth-child(7),
+.csenger-table td:nth-child(7) {
+  width: 10%;
+  text-align: center;
+}
+
 /* Weather Table Specifics */
 #weather-table th:nth-child(1),
 #weather-table td:nth-child(1) {
