@@ -282,7 +282,8 @@ tbody tr:last-child.total-row td {
 
 .csenger-table th:nth-child(1),
 .csenger-table td:nth-child(1) {
-  width: 220px; 
+  width: 19%; 
+  min-width: 150px; /* Szigorúan megtiltja a "falánk" oszlopnak, hogy ennél jobban összenyomja */
 }
 
 .csenger-table th:nth-last-child(-n+3),
